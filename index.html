@@ -2015,6 +2015,215 @@
       box-shadow: 0 6px 20px rgba(239, 83, 80, 0.6);
     }
 
+    /* ============ CATATAN BERSAMA STYLES ============ */
+    .catatan-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .catatan-input-area {
+      background: linear-gradient(135deg, rgba(122, 162, 255, 0.1), rgba(155, 125, 255, 0.1));
+      padding: 25px;
+      border-radius: 20px;
+      border: 2px solid rgba(122, 162, 255, 0.3);
+      margin-bottom: 30px;
+    }
+
+    .catatan-input-area h3 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .catatan-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .catatan-textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 15px;
+      border-radius: 12px;
+      border: 2px solid rgba(122, 162, 255, 0.3);
+      background: rgba(16, 16, 28, 0.8);
+      color: var(--light);
+      font-size: 15px;
+      font-family: inherit;
+      resize: vertical;
+      transition: all 0.3s ease;
+    }
+
+    .catatan-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 20px rgba(122, 162, 255, 0.3);
+    }
+
+    .catatan-textarea::placeholder {
+      opacity: 0.5;
+    }
+
+    .catatan-submit-btn {
+      padding: 12px 30px;
+      border-radius: 25px;
+      border: none;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 16px;
+      align-self: flex-end;
+    }
+
+    .catatan-submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(122, 162, 255, 0.4);
+    }
+
+    .catatan-submit-btn:active {
+      transform: translateY(0);
+    }
+
+    .catatan-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .catatan-item {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 16px;
+      border: 1px solid rgba(122, 162, 255, 0.15);
+      transition: all 0.3s ease;
+      animation: slideInRight 0.5s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .catatan-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .catatan-item:hover {
+      border-color: var(--primary);
+      transform: translateX(5px);
+      box-shadow: 0 8px 25px rgba(122, 162, 255, 0.2);
+    }
+
+    .catatan-item:hover::before {
+      opacity: 1;
+    }
+
+    .catatan-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      gap: 10px;
+    }
+
+    .catatan-author {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .catatan-timestamp {
+      font-size: 12px;
+      opacity: 0.6;
+      white-space: nowrap;
+    }
+
+    .catatan-text {
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 12px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .catatan-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      padding-top: 10px;
+      border-top: 1px solid rgba(122, 162, 255, 0.1);
+    }
+
+    .catatan-delete-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      opacity: 0.6;
+      transition: all 0.3s ease;
+      padding: 5px 10px;
+      border-radius: 8px;
+    }
+
+    .catatan-delete-btn:hover {
+      opacity: 1;
+      background: rgba(255, 107, 107, 0.2);
+      transform: scale(1.1);
+    }
+
+    .catatan-empty {
+      text-align: center;
+      padding: 60px 20px;
+      opacity: 0.6;
+    }
+
+    .catatan-empty-icon {
+      font-size: 60px;
+      margin-bottom: 15px;
+    }
+
+    .catatan-stats {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .catatan-stat-item {
+      background: linear-gradient(135deg, rgba(122, 162, 255, 0.15), rgba(155, 125, 255, 0.15));
+      padding: 15px 25px;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid rgba(122, 162, 255, 0.2);
+    }
+
+    .catatan-stat-number {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .catatan-stat-label {
+      font-size: 12px;
+      opacity: 0.8;
+      margin-top: 5px;
+    }
+
   </style>
 </head>
 
@@ -2130,6 +2339,12 @@
         <span class="menu-icon">🎮</span>
         <h3 class="menu-title">Heart Catcher</h3>
         <p class="menu-desc">Main game bareng yuk!</p>
+      </div>
+
+      <div class="menu-card" onclick="openSection('catatan')">
+        <span class="menu-icon">📝</span>
+        <h3 class="menu-title">Catatan Bersama</h3>
+        <p class="menu-desc">Tulis & bagikan catatan real-time</p>
       </div>
 
       <div class="menu-card" onclick="openSection('penutup')">
@@ -2651,6 +2866,65 @@
             <p>• Lakukan tantangan yang keluar!</p>
             <p>• Semakin banyak spin, semakin seru! 🎉</p>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ CATATAN BERSAMA SECTION ============ -->
+    <div class="section" id="catatan">
+      <div class="section-header">
+        <button class="back-btn" onclick="goBack()">
+          <span>←</span>
+          <span>Kembali</span>
+        </button>
+        <h2 class="section-title">📝 Catatan Bersama</h2>
+      </div>
+
+      <div class="content-card">
+        <div class="catatan-container">
+          <!-- Stats -->
+          <div class="catatan-stats">
+            <div class="catatan-stat-item">
+              <div class="catatan-stat-number" id="totalCatatan">0</div>
+              <div class="catatan-stat-label">Total Catatan</div>
+            </div>
+            <div class="catatan-stat-item">
+              <div class="catatan-stat-number">🔄</div>
+              <div class="catatan-stat-label">Real-time Sync</div>
+            </div>
+          </div>
+
+          <!-- Input Area -->
+          <div class="catatan-input-area">
+            <h3>✍️ Tulis Catatan Baru</h3>
+            <div class="catatan-form">
+              <textarea 
+                id="catatanText" 
+                class="catatan-textarea" 
+                placeholder="Tulis catatan, pesan, atau apapun yang ingin kamu bagikan... 💭"
+                maxlength="500"
+              ></textarea>
+              <button class="catatan-submit-btn" onclick="addCatatan()">
+                📤 Kirim Catatan
+              </button>
+            </div>
+          </div>
+
+          <!-- List Catatan -->
+          <div class="catatan-list" id="catatanList">
+            <div class="catatan-empty">
+              <div class="catatan-empty-icon">📭</div>
+              <p>Belum ada catatan. Yuk tulis catatan pertama!</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="game-instructions" style="margin-top: 30px;">
+          <h4>💡 Tentang Catatan Bersama:</h4>
+          <p>• Tulis catatan, pesan, atau reminder untuk kita berdua</p>
+          <p>• Semua catatan tersinkron secara real-time dengan Firebase</p>
+          <p>• Klik ikon 🗑️ untuk menghapus catatan</p>
+          <p>• Maksimal 500 karakter per catatan</p>
         </div>
       </div>
     </div>
@@ -4988,7 +5262,138 @@
   }
 
   // ============================================
-  // 5️⃣ AUTO-LOAD SAAT PAGE LOAD
+  // 5️⃣ CATATAN BERSAMA FUNCTIONS
+  // ============================================
+  
+  // Tambah catatan baru
+  async function addCatatan() {
+    const textarea = document.getElementById('catatanText');
+    const text = textarea.value.trim();
+    
+    if (!text) {
+      showNotification('⚠️ Tulis catatan dulu!');
+      return;
+    }
+    
+    if (text.length > 500) {
+      showNotification('⚠️ Catatan terlalu panjang! Maksimal 500 karakter.');
+      return;
+    }
+    
+    try {
+      const newCatatanRef = database.ref('catatan').push();
+      await newCatatanRef.set({
+        text: text,
+        timestamp: Date.now(),
+        date: new Date().toLocaleDateString('id-ID'),
+        dateTime: new Date().toISOString(),
+        time: new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })
+      });
+      
+      // Clear textarea
+      textarea.value = '';
+      
+      showNotification('✅ Catatan berhasil ditambahkan!');
+      createConfetti();
+    } catch (error) {
+      console.error('Error adding catatan:', error);
+      showNotification('❌ Gagal menambahkan catatan!');
+    }
+  }
+  
+  // Load catatan dengan real-time listener
+  function loadCatatan() {
+    const list = document.getElementById('catatanList');
+    if (!list) return;
+    
+    // Set up real-time listener
+    database.ref('catatan').orderByChild('timestamp').on('value', (snapshot) => {
+      list.innerHTML = '';
+      
+      if (!snapshot.exists()) {
+        list.innerHTML = `
+          <div class="catatan-empty">
+            <div class="catatan-empty-icon">📭</div>
+            <p>Belum ada catatan. Yuk tulis catatan pertama!</p>
+          </div>
+        `;
+        
+        // Update counter
+        const counterEl = document.getElementById('totalCatatan');
+        if (counterEl) counterEl.textContent = '0';
+        return;
+      }
+      
+      const catatanArray = [];
+      snapshot.forEach((childSnapshot) => {
+        catatanArray.push({
+          id: childSnapshot.key,
+          ...childSnapshot.val()
+        });
+      });
+      
+      // Sort descending (newest first)
+      catatanArray.reverse();
+      
+      // Render catatan
+      catatanArray.forEach(data => {
+        const item = document.createElement('div');
+        item.className = 'catatan-item';
+        item.innerHTML = `
+          <div class="catatan-header">
+            <div class="catatan-author">💭 Catatan</div>
+            <div class="catatan-timestamp">${data.date} • ${data.time}</div>
+          </div>
+          <div class="catatan-text">${escapeHtml(data.text)}</div>
+          <div class="catatan-actions">
+            <button onclick="deleteCatatan('${data.id}')" class="catatan-delete-btn" title="Hapus catatan">🗑️</button>
+          </div>
+        `;
+        list.appendChild(item);
+      });
+      
+      // Update counter
+      const counterEl = document.getElementById('totalCatatan');
+      if (counterEl) counterEl.textContent = catatanArray.length;
+    });
+  }
+  
+  // Hapus catatan
+  async function deleteCatatan(id) {
+    if (!confirm('Hapus catatan ini?')) return;
+    
+    try {
+      await database.ref('catatan/' + id).remove();
+      showNotification('🗑️ Catatan dihapus!');
+    } catch (error) {
+      console.error('Error deleting catatan:', error);
+      showNotification('❌ Gagal menghapus catatan!');
+    }
+  }
+  
+  // Helper function untuk escape HTML (mencegah XSS)
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+  
+  // Enter key untuk submit catatan
+  document.addEventListener('DOMContentLoaded', () => {
+    const catatanTextarea = document.getElementById('catatanText');
+    if (catatanTextarea) {
+      catatanTextarea.addEventListener('keydown', (e) => {
+        // Ctrl/Cmd + Enter untuk submit
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+          e.preventDefault();
+          addCatatan();
+        }
+      });
+    }
+  });
+
+  // ============================================
+  // 6️⃣ AUTO-LOAD SAAT PAGE LOAD
   // ============================================
   
   // Load data ketika page selesai load
@@ -4998,6 +5403,7 @@
     setTimeout(() => {
       loadMemories();
       loadSavedLetters();
+      loadCatatan(); // Load catatan bersama
     }, 1000);
   });
 
@@ -5014,10 +5420,12 @@
       await database.ref('memories').remove();
       await database.ref('loveletters').remove();
       await database.ref('gamescores').remove();
+      await database.ref('catatan').remove();
       
       showNotification('🗑️ Semua data dihapus!');
       loadMemories();
       loadSavedLetters();
+      loadCatatan();
     } catch (error) {
       console.error('Error clearing data:', error);
     }
@@ -5028,6 +5436,7 @@
   console.log('  - addMemory(), loadMemories(), deleteMemory(id)');
   console.log('  - saveLetter(), loadSavedLetters(), deleteLetter(id), viewLetter(id)');
   console.log('  - saveGameScore(name, score), getHighScore(name, callback)');
+  console.log('  - addCatatan(), loadCatatan(), deleteCatatan(id)');
   console.log('  - clearAllData()');
 </script>
 
