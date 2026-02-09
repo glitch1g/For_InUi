@@ -2224,6 +2224,316 @@
       margin-top: 5px;
     }
 
+    /* ============ NEW: Author Name Input ============ */
+    .catatan-author-input {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .catatan-author-input label {
+      font-size: 14px;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    .catatan-author-select {
+      flex: 1;
+      padding: 10px 15px;
+      border-radius: 10px;
+      border: 2px solid rgba(122, 162, 255, 0.3);
+      background: rgba(16, 16, 28, 0.8);
+      color: var(--light);
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .catatan-author-select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 15px rgba(122, 162, 255, 0.3);
+    }
+
+    /* ============ NEW: Three Dots Menu ============ */
+    .catatan-menu {
+      position: relative;
+    }
+
+    .catatan-menu-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 20px;
+      opacity: 0.6;
+      transition: all 0.3s ease;
+      padding: 5px 10px;
+      border-radius: 8px;
+      color: var(--light);
+    }
+
+    .catatan-menu-btn:hover {
+      opacity: 1;
+      background: rgba(122, 162, 255, 0.2);
+    }
+
+    .catatan-dropdown {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: var(--card-bg);
+      border: 2px solid rgba(122, 162, 255, 0.3);
+      border-radius: 12px;
+      padding: 8px;
+      min-width: 150px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      z-index: 100;
+      display: none;
+      animation: slideDown 0.3s ease;
+    }
+
+    .catatan-dropdown.show {
+      display: block;
+    }
+
+    .catatan-dropdown-item {
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .catatan-dropdown-item:hover {
+      background: rgba(122, 162, 255, 0.2);
+    }
+
+    .catatan-dropdown-item.delete:hover {
+      background: rgba(255, 107, 107, 0.2);
+      color: var(--accent);
+    }
+
+    /* ============ NEW: Filters ============ */
+    .catatan-filters {
+      background: linear-gradient(135deg, rgba(122, 162, 255, 0.08), rgba(155, 125, 255, 0.08));
+      padding: 20px;
+      border-radius: 16px;
+      border: 1px solid rgba(122, 162, 255, 0.2);
+      margin-bottom: 25px;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .filter-group label {
+      font-size: 13px;
+      opacity: 0.8;
+      font-weight: 600;
+    }
+
+    .filter-select {
+      padding: 10px 15px;
+      border-radius: 10px;
+      border: 2px solid rgba(122, 162, 255, 0.3);
+      background: rgba(16, 16, 28, 0.8);
+      color: var(--light);
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .filter-select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 15px rgba(122, 162, 255, 0.3);
+    }
+
+    .filter-reset-btn {
+      padding: 10px 20px;
+      border-radius: 10px;
+      border: 2px solid rgba(122, 162, 255, 0.3);
+      background: transparent;
+      color: var(--primary);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 14px;
+      font-weight: 600;
+      align-self: flex-end;
+    }
+
+    .filter-reset-btn:hover {
+      background: rgba(122, 162, 255, 0.2);
+      border-color: var(--primary);
+    }
+
+    /* ============ NEW: Load More Button ============ */
+    .load-more-container {
+      text-align: center;
+      margin-top: 25px;
+      padding: 20px;
+    }
+
+    .load-more-btn {
+      padding: 12px 30px;
+      border-radius: 25px;
+      border: 2px solid var(--primary);
+      background: transparent;
+      color: var(--primary);
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 15px;
+    }
+
+    .load-more-btn:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(122, 162, 255, 0.4);
+    }
+
+    .load-more-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .load-more-info {
+      font-size: 13px;
+      opacity: 0.6;
+      margin-top: 10px;
+    }
+
+    /* ============ NEW: Edit Modal ============ */
+    .edit-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .edit-modal-content {
+      background: linear-gradient(135deg, #1a1a28, #12121a);
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 600px;
+      width: 100%;
+      border: 2px solid rgba(122, 162, 255, 0.3);
+      animation: slideInRight 0.3s ease;
+    }
+
+    .edit-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .edit-modal-header h3 {
+      color: var(--primary);
+      margin: 0;
+    }
+
+    .edit-modal-close {
+      background: transparent;
+      border: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: #fff;
+      opacity: 0.6;
+      transition: opacity 0.3s ease;
+    }
+
+    .edit-modal-close:hover {
+      opacity: 1;
+    }
+
+    .edit-modal-textarea {
+      width: 100%;
+      min-height: 150px;
+      padding: 15px;
+      border-radius: 12px;
+      border: 2px solid rgba(122, 162, 255, 0.3);
+      background: rgba(16, 16, 28, 0.8);
+      color: var(--light);
+      font-size: 15px;
+      font-family: inherit;
+      resize: vertical;
+      margin-bottom: 20px;
+    }
+
+    .edit-modal-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 20px rgba(122, 162, 255, 0.3);
+    }
+
+    .edit-modal-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .edit-modal-btn {
+      padding: 12px 25px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .edit-modal-btn.cancel {
+      background: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: var(--light);
+    }
+
+    .edit-modal-btn.cancel:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .edit-modal-btn.save {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+    }
+
+    .edit-modal-btn.save:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(122, 162, 255, 0.4);
+    }
+
+    /* ============ Author Badge in Catatan ============ */
+    .catatan-author-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      background: linear-gradient(135deg, rgba(122, 162, 255, 0.2), rgba(155, 125, 255, 0.2));
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid rgba(122, 162, 255, 0.3);
+    }
+
   </style>
 </head>
 
@@ -2898,6 +3208,16 @@
           <div class="catatan-input-area">
             <h3>✍️ Tulis Catatan Baru</h3>
             <div class="catatan-form">
+              <!-- NEW: Author Name Input -->
+              <div class="catatan-author-input">
+                <label>👤 Nama:</label>
+                <select id="catatanAuthor" class="catatan-author-select">
+                  <option value="">-- Pilih Nama --</option>
+                  <option value="Kamu">Kamu</option>
+                  <option value="Aku">Aku</option>
+                </select>
+              </div>
+              
               <textarea 
                 id="catatanText" 
                 class="catatan-textarea" 
@@ -2910,12 +3230,62 @@
             </div>
           </div>
 
+          <!-- NEW: Filters -->
+          <div class="catatan-filters">
+            <div class="filter-group">
+              <label>📅 Bulan</label>
+              <select id="filterMonth" class="filter-select" onchange="applyFilters()">
+                <option value="">Semua Bulan</option>
+                <option value="01">Januari</option>
+                <option value="02">Februari</option>
+                <option value="03">Maret</option>
+                <option value="04">April</option>
+                <option value="05">Mei</option>
+                <option value="06">Juni</option>
+                <option value="07">Juli</option>
+                <option value="08">Agustus</option>
+                <option value="09">September</option>
+                <option value="10">Oktober</option>
+                <option value="11">November</option>
+                <option value="12">Desember</option>
+              </select>
+            </div>
+            
+            <div class="filter-group">
+              <label>📆 Tahun</label>
+              <select id="filterYear" class="filter-select" onchange="applyFilters()">
+                <option value="">Semua Tahun</option>
+              </select>
+            </div>
+            
+            <div class="filter-group">
+              <label>👤 Penulis</label>
+              <select id="filterAuthor" class="filter-select" onchange="applyFilters()">
+                <option value="">Semua</option>
+                <option value="Kamu">Kamu</option>
+                <option value="Aku">Aku</option>
+              </select>
+            </div>
+            
+            <button class="filter-reset-btn" onclick="resetFilters()">
+              🔄 Reset
+            </button>
+          </div>
+
           <!-- List Catatan -->
           <div class="catatan-list" id="catatanList">
             <div class="catatan-empty">
               <div class="catatan-empty-icon">📭</div>
               <p>Belum ada catatan. Yuk tulis catatan pertama!</p>
             </div>
+          </div>
+
+          <!-- NEW: Load More Button -->
+          <div class="load-more-container" id="loadMoreContainer" style="display: none;">
+            <button class="load-more-btn" id="loadMoreBtn" onclick="loadMoreCatatan()">
+              📥 Muat Lebih Banyak
+            </button>
+            <div class="load-more-info" id="loadMoreInfo"></div>
           </div>
         </div>
 
@@ -5265,10 +5635,22 @@
   // 5️⃣ CATATAN BERSAMA FUNCTIONS
   // ============================================
   
+  // Global variables untuk pagination dan filter
+  let allCatatanData = [];
+  let displayedCatatanCount = 10; // Jumlah catatan yang ditampilkan per load
+  const LOAD_MORE_INCREMENT = 10; // Jumlah tambahan saat load more
+  
   // Tambah catatan baru
   async function addCatatan() {
     const textarea = document.getElementById('catatanText');
+    const authorSelect = document.getElementById('catatanAuthor');
     const text = textarea.value.trim();
+    const author = authorSelect.value;
+    
+    if (!author) {
+      showNotification('⚠️ Pilih nama dulu!');
+      return;
+    }
     
     if (!text) {
       showNotification('⚠️ Tulis catatan dulu!');
@@ -5281,17 +5663,24 @@
     }
     
     try {
+      const now = new Date();
       const newCatatanRef = database.ref('catatan').push();
       await newCatatanRef.set({
         text: text,
+        author: author,
         timestamp: Date.now(),
-        date: new Date().toLocaleDateString('id-ID'),
-        dateTime: new Date().toISOString(),
-        time: new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })
+        date: now.toLocaleDateString('id-ID'),
+        dateTime: now.toISOString(),
+        time: now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }),
+        month: String(now.getMonth() + 1).padStart(2, '0'),
+        year: String(now.getFullYear())
       });
       
       // Clear textarea
       textarea.value = '';
+      
+      // Save author preference to localStorage
+      localStorage.setItem('lastCatatanAuthor', author);
       
       showNotification('✅ Catatan berhasil ditambahkan!');
       createConfetti();
@@ -5301,14 +5690,14 @@
     }
   }
   
-  // Load catatan dengan real-time listener
+  // Load catatan dengan real-time listener + pagination + filter
   function loadCatatan() {
     const list = document.getElementById('catatanList');
     if (!list) return;
     
     // Set up real-time listener
     database.ref('catatan').orderByChild('timestamp').on('value', (snapshot) => {
-      list.innerHTML = '';
+      allCatatanData = [];
       
       if (!snapshot.exists()) {
         list.innerHTML = `
@@ -5318,48 +5707,277 @@
           </div>
         `;
         
-        // Update counter
-        const counterEl = document.getElementById('totalCatatan');
-        if (counterEl) counterEl.textContent = '0';
+        updateCatatanCounter(0);
+        hideLoadMoreButton();
         return;
       }
       
-      const catatanArray = [];
+      // Collect all data
       snapshot.forEach((childSnapshot) => {
-        catatanArray.push({
+        allCatatanData.push({
           id: childSnapshot.key,
           ...childSnapshot.val()
         });
       });
       
       // Sort descending (newest first)
-      catatanArray.reverse();
+      allCatatanData.reverse();
       
-      // Render catatan
-      catatanArray.forEach(data => {
-        const item = document.createElement('div');
-        item.className = 'catatan-item';
-        item.innerHTML = `
-          <div class="catatan-header">
-            <div class="catatan-author">💭 Catatan</div>
-            <div class="catatan-timestamp">${data.date} • ${data.time}</div>
+      // Populate year filter
+      populateYearFilter();
+      
+      // Apply filters and render
+      applyFilters();
+    });
+  }
+  
+  // Apply filters
+  function applyFilters() {
+    const monthFilter = document.getElementById('filterMonth').value;
+    const yearFilter = document.getElementById('filterYear').value;
+    const authorFilter = document.getElementById('filterAuthor').value;
+    
+    // Filter data
+    let filteredData = allCatatanData.filter(catatan => {
+      const matchMonth = !monthFilter || catatan.month === monthFilter;
+      const matchYear = !yearFilter || catatan.year === yearFilter;
+      const matchAuthor = !authorFilter || catatan.author === authorFilter;
+      return matchMonth && matchYear && matchAuthor;
+    });
+    
+    // Reset displayed count
+    displayedCatatanCount = LOAD_MORE_INCREMENT;
+    
+    // Render filtered data
+    renderCatatan(filteredData);
+  }
+  
+  // Reset filters
+  function resetFilters() {
+    document.getElementById('filterMonth').value = '';
+    document.getElementById('filterYear').value = '';
+    document.getElementById('filterAuthor').value = '';
+    applyFilters();
+  }
+  
+  // Render catatan dengan pagination
+  function renderCatatan(data) {
+    const list = document.getElementById('catatanList');
+    list.innerHTML = '';
+    
+    if (data.length === 0) {
+      list.innerHTML = `
+        <div class="catatan-empty">
+          <div class="catatan-empty-icon">🔍</div>
+          <p>Tidak ada catatan yang sesuai filter.</p>
+        </div>
+      `;
+      updateCatatanCounter(0);
+      hideLoadMoreButton();
+      return;
+    }
+    
+    // Display only up to displayedCatatanCount
+    const displayData = data.slice(0, displayedCatatanCount);
+    
+    displayData.forEach(catatan => {
+      const item = document.createElement('div');
+      item.className = 'catatan-item';
+      item.innerHTML = `
+        <div class="catatan-header">
+          <div class="catatan-author-badge">
+            ${catatan.author === 'Kamu' ? '👤' : '❤️'} ${escapeHtml(catatan.author || 'Anonymous')}
           </div>
-          <div class="catatan-text">${escapeHtml(data.text)}</div>
-          <div class="catatan-actions">
-            <button onclick="deleteCatatan('${data.id}')" class="catatan-delete-btn" title="Hapus catatan">🗑️</button>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div class="catatan-timestamp">${catatan.date} • ${catatan.time}</div>
+            <div class="catatan-menu">
+              <button class="catatan-menu-btn" onclick="toggleCatatanMenu('${catatan.id}')">⋮</button>
+              <div class="catatan-dropdown" id="menu-${catatan.id}">
+                <div class="catatan-dropdown-item" onclick="editCatatan('${catatan.id}')">
+                  ✏️ Edit
+                </div>
+                <div class="catatan-dropdown-item delete" onclick="deleteCatatan('${catatan.id}')">
+                  🗑️ Hapus
+                </div>
+              </div>
+            </div>
           </div>
-        `;
-        list.appendChild(item);
+        </div>
+        <div class="catatan-text">${escapeHtml(catatan.text)}</div>
+      `;
+      list.appendChild(item);
+    });
+    
+    // Update counter
+    updateCatatanCounter(data.length);
+    
+    // Show/hide load more button
+    if (displayedCatatanCount < data.length) {
+      showLoadMoreButton(displayedCatatanCount, data.length);
+    } else {
+      hideLoadMoreButton();
+    }
+  }
+  
+  // Load more catatan
+  function loadMoreCatatan() {
+    displayedCatatanCount += LOAD_MORE_INCREMENT;
+    applyFilters();
+  }
+  
+  // Show load more button
+  function showLoadMoreButton(displayed, total) {
+    const container = document.getElementById('loadMoreContainer');
+    const btn = document.getElementById('loadMoreBtn');
+    const info = document.getElementById('loadMoreInfo');
+    
+    container.style.display = 'block';
+    btn.disabled = false;
+    info.textContent = `Menampilkan ${displayed} dari ${total} catatan`;
+  }
+  
+  // Hide load more button
+  function hideLoadMoreButton() {
+    const container = document.getElementById('loadMoreContainer');
+    if (container) container.style.display = 'none';
+  }
+  
+  // Update catatan counter
+  function updateCatatanCounter(count) {
+    const counterEl = document.getElementById('totalCatatan');
+    if (counterEl) counterEl.textContent = count;
+  }
+  
+  // Populate year filter dynamically
+  function populateYearFilter() {
+    const yearSelect = document.getElementById('filterYear');
+    const currentYear = new Date().getFullYear();
+    const years = new Set();
+    
+    // Collect unique years from data
+    allCatatanData.forEach(catatan => {
+      if (catatan.year) years.add(catatan.year);
+    });
+    
+    // Add current year if not exists
+    years.add(String(currentYear));
+    
+    // Sort years descending
+    const sortedYears = Array.from(years).sort((a, b) => b - a);
+    
+    // Clear and populate
+    yearSelect.innerHTML = '<option value="">Semua Tahun</option>';
+    sortedYears.forEach(year => {
+      const option = document.createElement('option');
+      option.value = year;
+      option.textContent = year;
+      yearSelect.appendChild(option);
+    });
+  }
+  
+  // Toggle catatan menu (three dots)
+  function toggleCatatanMenu(id) {
+    const menu = document.getElementById('menu-' + id);
+    const allMenus = document.querySelectorAll('.catatan-dropdown');
+    
+    // Close all other menus
+    allMenus.forEach(m => {
+      if (m.id !== 'menu-' + id) {
+        m.classList.remove('show');
+      }
+    });
+    
+    // Toggle current menu
+    menu.classList.toggle('show');
+  }
+  
+  // Close menus when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.catatan-menu')) {
+      document.querySelectorAll('.catatan-dropdown').forEach(menu => {
+        menu.classList.remove('show');
+      });
+    }
+  });
+  
+  // Edit catatan
+  function editCatatan(id) {
+    // Close menu
+    toggleCatatanMenu(id);
+    
+    // Get catatan data
+    database.ref('catatan/' + id).once('value', (snapshot) => {
+      if (!snapshot.exists()) return;
+      
+      const data = snapshot.val();
+      
+      // Create edit modal
+      const modal = document.createElement('div');
+      modal.className = 'edit-modal';
+      modal.innerHTML = `
+        <div class="edit-modal-content">
+          <div class="edit-modal-header">
+            <h3>✏️ Edit Catatan</h3>
+            <button class="edit-modal-close" onclick="this.closest('.edit-modal').remove()">×</button>
+          </div>
+          <textarea class="edit-modal-textarea" id="editText-${id}" maxlength="500">${escapeHtml(data.text)}</textarea>
+          <div class="edit-modal-actions">
+            <button class="edit-modal-btn cancel" onclick="this.closest('.edit-modal').remove()">Batal</button>
+            <button class="edit-modal-btn save" onclick="saveCatatanEdit('${id}')">💾 Simpan</button>
+          </div>
+        </div>
+      `;
+      
+      document.body.appendChild(modal);
+      
+      // Focus textarea
+      document.getElementById('editText-' + id).focus();
+      
+      // Close on backdrop click
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.remove();
+      });
+    });
+  }
+  
+  // Save catatan edit
+  async function saveCatatanEdit(id) {
+    const textarea = document.getElementById('editText-' + id);
+    const newText = textarea.value.trim();
+    
+    if (!newText) {
+      showNotification('⚠️ Catatan tidak boleh kosong!');
+      return;
+    }
+    
+    if (newText.length > 500) {
+      showNotification('⚠️ Catatan terlalu panjang! Maksimal 500 karakter.');
+      return;
+    }
+    
+    try {
+      await database.ref('catatan/' + id).update({
+        text: newText,
+        editedAt: Date.now(),
+        editedDate: new Date().toLocaleString('id-ID')
       });
       
-      // Update counter
-      const counterEl = document.getElementById('totalCatatan');
-      if (counterEl) counterEl.textContent = catatanArray.length;
-    });
+      // Close modal
+      document.querySelector('.edit-modal').remove();
+      
+      showNotification('✅ Catatan berhasil diupdate!');
+    } catch (error) {
+      console.error('Error updating catatan:', error);
+      showNotification('❌ Gagal mengupdate catatan!');
+    }
   }
   
   // Hapus catatan
   async function deleteCatatan(id) {
+    // Close menu
+    const menu = document.getElementById('menu-' + id);
+    if (menu) menu.classList.remove('show');
+    
     if (!confirm('Hapus catatan ini?')) return;
     
     try {
@@ -5389,6 +6007,13 @@
           addCatatan();
         }
       });
+    }
+    
+    // Load last author preference
+    const lastAuthor = localStorage.getItem('lastCatatanAuthor');
+    const authorSelect = document.getElementById('catatanAuthor');
+    if (lastAuthor && authorSelect) {
+      authorSelect.value = lastAuthor;
     }
   });
 
