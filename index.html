@@ -4690,6 +4690,7 @@
 <!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-check-compat.js"></script>
 
 <script>
   // ============================================
@@ -4707,9 +4708,20 @@
 
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+  
+  // ============================================
+  // 🛡️ FIREBASE APP CHECK (SECURITY)
+  // ============================================
+  const appCheck = firebase.appCheck();
+  appCheck.activate(
+    '6LcEtGUsAAAAAHyQLdvtKrYCO4zaKwsre_s7awzF', // reCAPTCHA site key
+    true // Pass true to enable automatic refresh
+  );
+  
   const database = firebase.database();
   
   console.log('🔥 Firebase connected successfully!');
+  console.log('🛡️ App Check enabled!');
 
   // ============================================
   // 2️⃣ MEMORY BOX FUNCTIONS
