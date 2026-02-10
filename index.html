@@ -3198,6 +3198,22 @@
     }
 
 
+    /* ============ MILESTONE LOCKED CARD ============ */
+    .menu-card.milestone-locked {
+      opacity: 0.45;
+      cursor: default;
+      filter: grayscale(0.4);
+      pointer-events: none;
+      border-style: dashed;
+      border-color: rgba(122, 162, 255, 0.2);
+    }
+
+    .menu-card.milestone-locked .menu-icon {
+      filter: grayscale(1);
+      opacity: 0.5;
+    }
+
+
   </style>
 </head>
 
@@ -3333,6 +3349,18 @@
           <span class="menu-icon">💕</span>
           <h3 class="menu-title">1 Month</h3>
           <p class="menu-desc">9 Jan - 9 Feb 2026</p>
+        </div>
+
+        <div class="menu-card milestone-locked">
+          <span class="menu-icon">🔒</span>
+          <h3 class="menu-title" style="opacity:0.45;">• • •</h3>
+          <p class="menu-desc" style="opacity:0.35;">Segera hadir...</p>
+        </div>
+
+        <div class="menu-card milestone-locked">
+          <span class="menu-icon">🔒</span>
+          <h3 class="menu-title" style="opacity:0.45;">• • •</h3>
+          <p class="menu-desc" style="opacity:0.35;">Segera hadir...</p>
         </div>
       </div>
     </div>
@@ -3935,7 +3963,7 @@
                 <label>📁 Folder:</label>
                 <div class="folder-input-wrapper">
                   <select id="catatanFolder" class="catatan-folder-select">
-                    <option value="">-- Tanpa Folder --</option>
+                    <option value="">-- Random --</option>
                   </select>
                   <button class="folder-add-quick-btn" onclick="toggleQuickFolderAdd()" title="Tambah Folder Cepat">
                     ➕
@@ -6746,10 +6774,10 @@
         noneCard.className = 'folder-view-card no-folder';
         noneCard.innerHTML = `
           <span class="folder-view-icon">📂</span>
-          <div class="folder-view-name">Tanpa Folder</div>
+          <div class="folder-view-name">Random</div>
           <span class="folder-view-count">${noneCount} catatan</span>
         `;
-        noneCard.onclick = () => openFolderView('__none__', 'Tanpa Folder');
+        noneCard.onclick = () => openFolderView('__none__', 'Random');
         grid.appendChild(noneCard);
       }
 
@@ -7073,7 +7101,7 @@
     
     database.ref('folders').on('value', (snapshot) => {
       folderSelect.innerHTML = '<option value="">Semua Folder</option>';
-      folderSelect.innerHTML += '<option value="__none__">📂 Tanpa Folder</option>';
+      folderSelect.innerHTML += '<option value="__none__">📂 Random</option>';
       
       if (snapshot.exists()) {
         const folders = [];
@@ -7466,7 +7494,7 @@
     
     database.ref('folders').on('value', (snapshot) => {
       // Keep default option
-      folderSelect.innerHTML = '<option value="">-- Tanpa Folder --</option>';
+      folderSelect.innerHTML = '<option value="">-- Random --</option>';
       
       if (snapshot.exists()) {
         const folders = [];
