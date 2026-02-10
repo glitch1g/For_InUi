@@ -411,6 +411,97 @@
       animation: shake 0.5s ease;
     }
 
+    /* ============ USER SELECTION ============ */
+    .user-selection {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin: 30px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .user-card {
+      background: rgba(20, 20, 35, 0.8);
+      border: 2px solid rgba(122, 162, 255, 0.2);
+      border-radius: 16px;
+      padding: 25px 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .user-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(122, 162, 255, 0.1), rgba(155, 125, 255, 0.1));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .user-card:hover::before {
+      opacity: 1;
+    }
+
+    .user-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(122, 162, 255, 0.3);
+    }
+
+    .user-card.selected {
+      border-color: var(--primary);
+      background: rgba(122, 162, 255, 0.15);
+      box-shadow: 0 0 30px rgba(122, 162, 255, 0.4);
+    }
+
+    .user-icon {
+      font-size: 50px;
+      margin-bottom: 10px;
+    }
+
+    .user-card h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
+      color: var(--light);
+    }
+
+    .user-card p {
+      font-size: 13px;
+      opacity: 0.7;
+      margin: 0;
+    }
+
+    .password-section {
+      animation: fadeInUp 0.5s ease;
+    }
+
+    .back-user-btn {
+      width: 100%;
+      padding: 12px;
+      background: rgba(122, 162, 255, 0.1);
+      color: var(--primary);
+      border: 1px solid rgba(122, 162, 255, 0.3);
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .back-user-btn:hover {
+      background: rgba(122, 162, 255, 0.2);
+      border-color: var(--primary);
+    }
+
     /* ============ MAIN CONTAINER ============ */
     .container {
       max-width: 700px;
@@ -2153,6 +2244,8 @@
       align-items: flex-start;
       margin-bottom: 12px;
       gap: 10px;
+      position: relative;
+      z-index: 1;
     }
 
     .catatan-author {
@@ -2320,8 +2413,33 @@
       box-shadow: 0 0 15px rgba(155, 125, 255, 0.3);
     }
 
+    .folder-input-wrapper {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex: 1;
+    }
+
+    .folder-add-quick-btn {
+      padding: 10px 14px;
+      background: linear-gradient(135deg, rgba(122, 162, 255, 0.2), rgba(155, 125, 255, 0.2));
+      border: 2px solid rgba(122, 162, 255, 0.4);
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    .folder-add-quick-btn:hover {
+      background: linear-gradient(135deg, rgba(122, 162, 255, 0.3), rgba(155, 125, 255, 0.3));
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 5px 15px rgba(122, 162, 255, 0.4);
+    }
+
     .folder-manage-btn {
-      padding: 10px 15px;
+      padding: 10px 14px;
       background: linear-gradient(135deg, rgba(155, 125, 255, 0.2), rgba(122, 162, 255, 0.2));
       border: 2px solid rgba(155, 125, 255, 0.4);
       border-radius: 10px;
@@ -2334,6 +2452,70 @@
       background: linear-gradient(135deg, rgba(155, 125, 255, 0.3), rgba(122, 162, 255, 0.3));
       transform: translateY(-2px);
       box-shadow: 0 5px 15px rgba(155, 125, 255, 0.3);
+    }
+
+    /* Quick Folder Add */
+    .quick-folder-add {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 15px;
+      padding: 12px;
+      background: rgba(122, 162, 255, 0.05);
+      border: 2px dashed rgba(122, 162, 255, 0.3);
+      border-radius: 12px;
+      animation: slideDown 0.3s ease;
+    }
+
+    .quick-folder-input {
+      flex: 1;
+      padding: 10px 15px;
+      border-radius: 10px;
+      border: 2px solid rgba(122, 162, 255, 0.3);
+      background: rgba(16, 16, 28, 0.8);
+      color: var(--light);
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .quick-folder-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 15px rgba(122, 162, 255, 0.3);
+    }
+
+    .quick-folder-create-btn {
+      padding: 10px 16px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .quick-folder-create-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 5px 15px rgba(122, 162, 255, 0.5);
+    }
+
+    .quick-folder-cancel-btn {
+      padding: 10px 16px;
+      background: rgba(255, 107, 107, 0.2);
+      border: 2px solid rgba(255, 107, 107, 0.4);
+      border-radius: 10px;
+      color: var(--accent);
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .quick-folder-cancel-btn:hover {
+      background: rgba(255, 107, 107, 0.3);
+      transform: scale(1.1);
     }
 
     /* ============ Folder Manager Modal ============ */
@@ -2564,11 +2746,12 @@
       border-radius: 12px;
       padding: 8px;
       min-width: 150px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      z-index: 1000;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(122, 162, 255, 0.5);
+      z-index: 9999;
       display: none;
       animation: slideDown 0.3s ease;
       margin-top: 5px;
+      backdrop-filter: blur(10px);
     }
 
     .catatan-dropdown.show {
@@ -2610,10 +2793,11 @@
       border-radius: 12px;
       padding: 8px;
       min-width: 180px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(122, 162, 255, 0.5);
       display: none;
       margin-left: 5px;
-      z-index: 1001;
+      z-index: 10000;
+      backdrop-filter: blur(10px);
     }
 
     .catatan-dropdown-item.has-submenu:hover .catatan-submenu {
@@ -2878,26 +3062,46 @@
     <div class="loading-text">Memuat Kenangan Indah...</div>
   </div>
 
-  <!-- ============ PASSWORD GATE ============ -->
+  <!-- ============ USER SELECTION GATE ============ -->
   <div class="overlay" id="overlay">
     <div class="gate">
-      <div class="celebration-emoji">🎊</div>
-      <h2>Masukkan Password</h2>
-      <p>Hanya untuk orang spesial ❤️</p>
-      <div style="position: relative; display: inline-block; width: 100%; max-width: 280px;">
-        <input 
-          type="password" 
-          class="password-input" 
-          id="passwordInput" 
-          placeholder="Masukkan password..."
-          autocomplete="off"
-        />
-        <span class="toggle-password" onclick="togglePasswordVisibility('passwordInput', this)">
-          👁️
-        </span>
+      <div class="celebration-emoji">❤️</div>
+      <h2>Siapa Kamu?</h2>
+      <p>Pilih identitasmu untuk melanjutkan perjalanan kita ✨</p>
+      
+      <!-- User Selection -->
+      <div class="user-selection">
+        <div class="user-card" onclick="selectUser('BF')" id="userBF">
+          <div class="user-icon">💙</div>
+          <h3>Boyfriend</h3>
+          <p>The Amazing Guy</p>
+        </div>
+        <div class="user-card" onclick="selectUser('GF')" id="userGF">
+          <div class="user-icon">💖</div>
+          <h3>Girlfriend</h3>
+          <p>The Beautiful Girl</p>
+        </div>
       </div>
-      <button class="unlock-btn" onclick="checkPassword()">Buka</button>
-      <div class="error-msg" id="errorMsg">Password salah, coba lagi! 💔</div>
+      
+      <!-- Password Input (will show after user selection) -->
+      <div class="password-section" id="passwordSection" style="display: none; margin-top: 20px;">
+        <p style="margin-bottom: 15px; opacity: 0.8;">Halo <span id="selectedUserName"></span>! Masukkan password:</p>
+        <div style="position: relative; display: inline-block; width: 100%; max-width: 280px;">
+          <input 
+            type="password" 
+            class="password-input" 
+            id="passwordInput" 
+            placeholder="Masukkan password..."
+            autocomplete="off"
+          />
+          <span class="toggle-password" onclick="togglePasswordVisibility('passwordInput', this)">
+            👁️
+          </span>
+        </div>
+        <button class="unlock-btn" onclick="checkPassword()">Masuk</button>
+        <button class="back-user-btn" onclick="backToUserSelection()">← Ganti User</button>
+        <div class="error-msg" id="errorMsg">Password salah, coba lagi! 💔</div>
+      </div>
     </div>
   </div>
 
@@ -3580,27 +3784,37 @@
           <div class="catatan-input-area">
             <h3>✍️ Tulis Catatan Baru</h3>
             <div class="catatan-form">
-              <!-- NEW: Author Name Input -->
-              <div class="catatan-author-input">
-                <label>👤 Nama:</label>
-                <select id="catatanAuthor" class="catatan-author-select">
-                  <option value="">-- Pilih Nama --</option>
-                  <option value="BF">BF (Boyfriend)</option>
-                  <option value="GF">GF (Girlfriend)</option>
-                </select>
-              </div>
-              
-              <!-- NEW: Folder/Category Input -->
+              <!-- NEW: Folder/Category Input - REDESIGNED -->
               <div class="catatan-folder-input">
                 <label>📁 Folder:</label>
-                <div style="display: flex; gap: 10px; align-items: center;">
+                <div class="folder-input-wrapper">
                   <select id="catatanFolder" class="catatan-folder-select">
-                    <option value="">-- Pilih Folder --</option>
+                    <option value="">-- Tanpa Folder --</option>
                   </select>
-                  <button class="folder-manage-btn" onclick="openFolderManager()" title="Kelola Folder">
-                    ⚙️
+                  <button class="folder-add-quick-btn" onclick="toggleQuickFolderAdd()" title="Tambah Folder Cepat">
+                    ➕
+                  </button>
+                  <button class="folder-manage-btn" onclick="openFolderManager()" title="Kelola Semua Folder">
+                    📂
                   </button>
                 </div>
+              </div>
+              
+              <!-- Quick Folder Add (Hidden by default) -->
+              <div class="quick-folder-add" id="quickFolderAdd" style="display: none;">
+                <input 
+                  type="text" 
+                  id="quickFolderName" 
+                  class="quick-folder-input" 
+                  placeholder="Nama folder baru..." 
+                  maxlength="30"
+                />
+                <button class="quick-folder-create-btn" onclick="createFolderQuick()">
+                  ✓
+                </button>
+                <button class="quick-folder-cancel-btn" onclick="toggleQuickFolderAdd()">
+                  ✕
+                </button>
               </div>
               
               <textarea 
@@ -3901,7 +4115,46 @@
     }
 
     // ============ PASSWORD CHECK ============
+    // ============ USER SELECTION ============
+    let currentUser = null;
+
+    function selectUser(user) {
+      currentUser = user;
+      
+      // Save to localStorage
+      localStorage.setItem('selectedUser', user);
+      
+      // Update UI
+      document.querySelectorAll('.user-card').forEach(card => {
+        card.classList.remove('selected');
+      });
+      document.getElementById('user' + user).classList.add('selected');
+      
+      // Show password section
+      document.getElementById('passwordSection').style.display = 'block';
+      document.getElementById('selectedUserName').textContent = user === 'BF' ? 'Boyfriend' : 'Girlfriend';
+      
+      // Focus password input
+      setTimeout(() => {
+        document.getElementById('passwordInput').focus();
+      }, 300);
+    }
+
+    function backToUserSelection() {
+      currentUser = null;
+      document.getElementById('passwordSection').style.display = 'none';
+      document.getElementById('passwordInput').value = '';
+      document.querySelectorAll('.user-card').forEach(card => {
+        card.classList.remove('selected');
+      });
+    }
+
     function checkPassword() {
+      if (!currentUser) {
+        showNotification('⚠️ Pilih user terlebih dahulu!');
+        return;
+      }
+
       const input = passwordInput.value.toLowerCase().trim();
       
       if (input === PASSWORD) {
@@ -3909,7 +4162,9 @@
         setTimeout(() => {
           overlay.style.display = 'none';
         }, 800);
-        showNotification('🎉 Welcome, Sayang! 💕');
+        
+        const userName = currentUser === 'BF' ? 'Boyfriend' : 'Girlfriend';
+        showNotification(`🎉 Welcome, ${userName}! 💕`);
         createConfetti();
         
         // Try to auto-play music after unlock (mobile-friendly)
@@ -6100,14 +6355,13 @@
   // Tambah catatan baru
   async function addCatatan() {
     const textarea = document.getElementById('catatanText');
-    const authorSelect = document.getElementById('catatanAuthor');
     const folderSelect = document.getElementById('catatanFolder');
     const text = textarea.value.trim();
-    const author = authorSelect.value;
+    const author = currentUser || localStorage.getItem('selectedUser'); // Auto dari user yang login
     const folderId = folderSelect.value;
     
     if (!author) {
-      showNotification('⚠️ Pilih nama dulu!');
+      showNotification('⚠️ Silakan login terlebih dahulu!');
       return;
     }
     
@@ -6144,9 +6398,6 @@
       const charCounter = document.getElementById('catatanCharCounter');
       if (charCount) charCount.textContent = '0';
       if (charCounter) charCounter.classList.remove('warning', 'danger');
-      
-      // Save author preference to localStorage
-      localStorage.setItem('lastCatatanAuthor', author);
       
       showNotification('✅ Catatan berhasil ditambahkan!');
       createConfetti();
@@ -6797,7 +7048,7 @@
     
     database.ref('folders').on('value', (snapshot) => {
       // Keep default option
-      folderSelect.innerHTML = '<option value="">-- Pilih Folder --</option>';
+      folderSelect.innerHTML = '<option value="">-- Tanpa Folder --</option>';
       
       if (snapshot.exists()) {
         const folders = [];
@@ -6822,6 +7073,102 @@
   }
   
   // Open folder manager modal
+
+            id: child.key,
+            ...child.val()
+          });
+        });
+        
+        // Sort alphabetically
+        folders.sort((a, b) => a.name.localeCompare(b.name));
+        
+        // Add options
+        folders.forEach(folder => {
+          const option = document.createElement('option');
+          option.value = folder.id;
+          option.textContent = `📁 ${folder.name}`;
+          folderSelect.appendChild(option);
+        });
+      }
+    });
+  }
+
+  // ============================================
+  // 🔧 QUICK FOLDER ADD FUNCTIONS
+  // ============================================
+  
+  function toggleQuickFolderAdd() {
+    const quickAdd = document.getElementById('quickFolderAdd');
+    const input = document.getElementById('quickFolderName');
+    
+    if (quickAdd.style.display === 'none') {
+      quickAdd.style.display = 'flex';
+      input.focus();
+    } else {
+      quickAdd.style.display = 'none';
+      input.value = '';
+    }
+  }
+  
+  async function createFolderQuick() {
+    const input = document.getElementById('quickFolderName');
+    const name = input.value.trim();
+    
+    if (!name) {
+      showNotification('⚠️ Masukkan nama folder!');
+      return;
+    }
+    
+    if (name.length > 30) {
+      showNotification('⚠️ Nama folder maksimal 30 karakter!');
+      return;
+    }
+    
+    try {
+      const newFolderRef = database.ref('folders').push();
+      const folderId = newFolderRef.key;
+      
+      await newFolderRef.set({
+        name: name,
+        createdAt: Date.now(),
+        createdDate: new Date().toLocaleString('id-ID')
+      });
+      
+      // Clear input and hide
+      input.value = '';
+      toggleQuickFolderAdd();
+      
+      // Auto-select the new folder (wait for real-time update)
+      setTimeout(() => {
+        document.getElementById('catatanFolder').value = folderId;
+      }, 300);
+      
+      showNotification('✅ Folder "' + name + '" berhasil dibuat!');
+    } catch (error) {
+      console.error('Error creating folder:', error);
+      showNotification('❌ Gagal membuat folder!');
+    }
+  }
+  
+  // Enter key untuk quick folder add
+  document.addEventListener('DOMContentLoaded', () => {
+    const quickInput = document.getElementById('quickFolderName');
+    if (quickInput) {
+      quickInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          createFolderQuick();
+        } else if (e.key === 'Escape') {
+          toggleQuickFolderAdd();
+        }
+      });
+    }
+  });
+
+  // ============================================
+  // 📁 FOLDER MANAGER FUNCTIONS (Original)
+  // ============================================
+  
   function openFolderManager() {
     const modal = document.createElement('div');
     modal.className = 'folder-manager-modal';
@@ -7081,13 +7428,6 @@
           addCatatan();
         }
       });
-    }
-    
-    // Load last author preference
-    const lastAuthor = localStorage.getItem('lastCatatanAuthor');
-    const authorSelect = document.getElementById('catatanAuthor');
-    if (lastAuthor && authorSelect) {
-      authorSelect.value = lastAuthor;
     }
   });
 
