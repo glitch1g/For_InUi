@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -280,18 +279,20 @@
 
     .gate {
       width: 100%;
-      max-width: 420px;
-      background: linear-gradient(135deg, #1a1a28, #12121a);
-      border-radius: 24px;
-      padding: 40px 32px;
+      max-width: 450px;
+      background: linear-gradient(135deg, rgba(26, 26, 40, 0.95), rgba(18, 18, 26, 0.95));
+      border-radius: 28px;
+      padding: 45px 36px;
       text-align: center;
-      box-shadow: 0 30px 90px rgba(0,0,0,.8);
-      border: 1px solid rgba(122, 162, 255, 0.15);
+      box-shadow: 0 30px 90px rgba(0,0,0,.8), 
+                  0 0 0 1px rgba(122, 162, 255, 0.2);
+      border: 2px solid rgba(122, 162, 255, 0.2);
       animation: fadeInUp 0.8s ease;
       position: relative;
       overflow: hidden;
     }
 
+    /* Animated gradient background */
     .gate::before {
       content: '';
       position: absolute;
@@ -299,54 +300,96 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle, rgba(122, 162, 255, 0.15) 0%, transparent 70%);
-      animation: pulse 4s infinite;
+      background: radial-gradient(circle, 
+        rgba(122, 162, 255, 0.15) 0%, 
+        rgba(155, 125, 255, 0.1) 30%,
+        transparent 70%);
+      animation: rotateGradient 8s linear infinite;
+    }
+
+    @keyframes rotateGradient {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Floating particles in login */
+    .gate::after {
+      content: '✨';
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 24px;
+      opacity: 0.4;
+      animation: twinkle 3s ease-in-out infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(1) rotate(0deg); }
+      50% { opacity: 0.6; transform: scale(1.2) rotate(180deg); }
     }
 
     .celebration-emoji {
-      font-size: 70px;
-      margin-bottom: 20px;
-      animation: bounce 2s infinite;
+      font-size: 80px;
+      margin-bottom: 24px;
+      animation: floatBounce 3s ease-in-out infinite;
       position: relative;
       z-index: 1;
+      filter: drop-shadow(0 0 20px rgba(255, 105, 180, 0.6));
+    }
+
+    @keyframes floatBounce {
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50% { transform: translateY(-15px) rotate(5deg); }
     }
 
     .gate h2 {
-      font-size: 28px;
-      margin-bottom: 12px;
-      background: linear-gradient(to right, var(--primary), var(--secondary));
+      font-size: 32px;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, #ff69b4, #7aa2ff, #9b7dff);
+      background-size: 200% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       position: relative;
       z-index: 1;
+      font-weight: 800;
+      animation: gradientShift 5s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
     }
 
     .gate p {
-      margin-bottom: 30px;
+      margin-bottom: 32px;
       opacity: 0.9;
       font-size: 15px;
       position: relative;
       z-index: 1;
+      line-height: 1.6;
     }
 
     .password-input {
       width: 100%;
-      padding: 16px 20px;
-      border-radius: 12px;
+      padding: 18px 22px;
+      border-radius: 14px;
       border: 2px solid rgba(122, 162, 255, 0.3);
-      background: rgba(10, 10, 20, 0.8);
+      background: rgba(10, 10, 20, 0.9);
       color: var(--light);
       font-size: 16px;
       margin-bottom: 20px;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: relative;
       z-index: 1;
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
     }
 
     .password-input:focus {
       outline: none;
       border-color: var(--primary);
-      box-shadow: 0 0 20px rgba(122, 162, 255, 0.3);
+      box-shadow: 0 0 25px rgba(122, 162, 255, 0.4),
+                  inset 0 2px 8px rgba(0, 0, 0, 0.3);
+      transform: translateY(-2px);
     }
 
     .toggle-password {
@@ -355,7 +398,7 @@
       top: 50%;
       transform: translateY(-50%);
       cursor: pointer;
-      font-size: 20px;
+      font-size: 22px;
       user-select: none;
       opacity: 0.6;
       transition: all 0.3s ease;
@@ -364,7 +407,8 @@
 
     .toggle-password:hover {
       opacity: 1;
-      transform: translateY(-50%) scale(1.1);
+      transform: translateY(-50%) scale(1.15);
+      filter: drop-shadow(0 0 5px rgba(122, 162, 255, 0.6));
     }
 
     .toggle-password:active {
@@ -373,28 +417,46 @@
 
     .unlock-btn {
       width: 100%;
-      padding: 16px;
+      padding: 18px;
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: white;
       border: none;
-      border-radius: 12px;
-      font-size: 17px;
-      font-weight: 600;
+      border-radius: 14px;
+      font-size: 18px;
+      font-weight: 700;
       cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 8px 20px rgba(122, 162, 255, 0.4);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 10px 25px rgba(122, 162, 255, 0.4);
       position: relative;
       overflow: hidden;
       z-index: 1;
     }
 
+    .unlock-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .unlock-btn:hover::before {
+      width: 400px;
+      height: 400px;
+    }
+
     .unlock-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(122, 162, 255, 0.5);
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px rgba(122, 162, 255, 0.6);
     }
 
     .unlock-btn:active {
-      transform: translateY(0);
+      transform: translateY(-2px);
     }
 
     .error-msg {
@@ -405,6 +467,7 @@
       transition: opacity 0.3s ease;
       position: relative;
       z-index: 1;
+      font-weight: 600;
     }
 
     .error-msg.show {
@@ -416,23 +479,25 @@
     .user-selection {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 15px;
-      margin: 30px 0;
+      gap: 18px;
+      margin: 32px 0;
       position: relative;
       z-index: 1;
     }
 
     .user-card {
-      background: rgba(20, 20, 35, 0.8);
-      border: 2px solid rgba(122, 162, 255, 0.2);
-      border-radius: 16px;
-      padding: 25px 15px;
+      background: linear-gradient(135deg, rgba(20, 20, 35, 0.9), rgba(30, 30, 45, 0.9));
+      border: 2px solid rgba(122, 162, 255, 0.25);
+      border-radius: 20px;
+      padding: 30px 18px;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: relative;
       overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     }
 
+    /* Gradient overlay */
     .user-card::before {
       content: '';
       position: absolute;
@@ -440,42 +505,95 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, rgba(122, 162, 255, 0.1), rgba(155, 125, 255, 0.1));
+      background: linear-gradient(135deg, rgba(122, 162, 255, 0.15), rgba(155, 125, 255, 0.15));
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.4s ease;
+    }
+
+    /* Animated border */
+    .user-card::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      background: linear-gradient(45deg, 
+        transparent,
+        rgba(122, 162, 255, 0.5),
+        transparent
+      );
+      border-radius: 20px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: -1;
+      filter: blur(10px);
     }
 
     .user-card:hover::before {
       opacity: 1;
     }
 
+    .user-card:hover::after {
+      opacity: 1;
+      animation: borderRotate 3s linear infinite;
+    }
+
+    @keyframes borderRotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
     .user-card:hover {
       border-color: var(--primary);
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(122, 162, 255, 0.3);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 15px 40px rgba(122, 162, 255, 0.4);
     }
 
     .user-card.selected {
       border-color: var(--primary);
-      background: rgba(122, 162, 255, 0.15);
-      box-shadow: 0 0 30px rgba(122, 162, 255, 0.4);
+      background: linear-gradient(135deg, rgba(122, 162, 255, 0.2), rgba(155, 125, 255, 0.2));
+      box-shadow: 0 0 35px rgba(122, 162, 255, 0.5);
+      transform: scale(1.05);
+    }
+
+    .user-card.selected::before {
+      opacity: 1;
+    }
+
+    /* BF card specific - Blue theme */
+    .user-card:first-child .user-icon {
+      animation: heartBeat 2s ease-in-out infinite;
+      filter: drop-shadow(0 0 15px rgba(100, 149, 237, 0.6));
+    }
+
+    /* GF card specific - Pink theme */
+    .user-card:last-child .user-icon {
+      animation: heartBeat 2s ease-in-out infinite;
+      animation-delay: 0.5s;
+      filter: drop-shadow(0 0 15px rgba(255, 105, 180, 0.6));
     }
 
     .user-icon {
-      font-size: 50px;
-      margin-bottom: 10px;
+      font-size: 56px;
+      margin-bottom: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .user-card:hover .user-icon {
+      transform: scale(1.15) rotate(5deg);
     }
 
     .user-card h3 {
-      font-size: 18px;
-      margin-bottom: 5px;
+      font-size: 20px;
+      margin-bottom: 6px;
       color: var(--light);
+      font-weight: 700;
+      position: relative;
     }
 
     .user-card p {
       font-size: 13px;
-      opacity: 0.7;
+      opacity: 0.75;
       margin: 0;
+      font-style: italic;
     }
 
     .password-section {
@@ -484,16 +602,16 @@
 
     .back-user-btn {
       width: 100%;
-      padding: 12px;
-      background: rgba(122, 162, 255, 0.1);
+      padding: 14px;
+      background: rgba(122, 162, 255, 0.12);
       color: var(--primary);
-      border: 1px solid rgba(122, 162, 255, 0.3);
-      border-radius: 10px;
-      font-size: 14px;
-      font-weight: 500;
+      border: 2px solid rgba(122, 162, 255, 0.3);
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
-      margin-top: 10px;
+      margin-top: 12px;
       position: relative;
       z-index: 1;
     }
@@ -516,77 +634,181 @@
     /* ============ HEADER ============ */
     .header {
       text-align: center;
-      padding: 40px 20px 30px;
+      padding: 45px 20px 35px;
       animation: fadeInUp 1.2s ease;
+      position: relative;
+    }
+
+    /* Decorative hearts floating in header */
+    .header::before,
+    .header::after {
+      content: '💕';
+      position: absolute;
+      font-size: 30px;
+      opacity: 0.15;
+      animation: floatSlow 4s ease-in-out infinite;
+    }
+
+    .header::before {
+      top: 20px;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .header::after {
+      top: 30px;
+      right: 10%;
+      animation-delay: 2s;
     }
 
     .main-title {
-      font-size: clamp(32px, 6vw, 48px);
-      margin-bottom: 8px;
-      background: linear-gradient(90deg, #9b7dff, #ffffff, #ff6b9d, #9b7dff, #ffffff, #ff6b9d);
-      background-size: 300% 100%;
+      font-size: clamp(34px, 6vw, 52px);
+      margin-bottom: 12px;
+      background: linear-gradient(90deg, 
+        #ff69b4, #9b7dff, #7aa2ff, #ff6b9d, #ffd700, 
+        #ff69b4, #9b7dff, #7aa2ff
+      );
+      background-size: 400% 100%;
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: gradientMove 5s ease infinite;
+      animation: rainbowGradient 8s ease infinite;
       cursor: pointer;
-      transition: transform 0.3s ease;
+      transition: all 0.4s ease;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-shadow: 0 0 30px rgba(255, 105, 180, 0.3);
+      position: relative;
+      z-index: 1;
     }
 
     .main-title:hover {
-      transform: scale(1.05);
+      transform: scale(1.08);
+      filter: drop-shadow(0 0 20px rgba(255, 105, 180, 0.6));
     }
     
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
+    @keyframes rainbowGradient {
+      0%, 100% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
     }
 
     .subtitle {
-      font-size: clamp(18px, 3vw, 22px);
-      opacity: 0.85;
-      margin-bottom: 6px;
+      font-size: clamp(18px, 3vw, 24px);
+      opacity: 0.9;
+      margin-bottom: 8px;
+      font-weight: 500;
+      position: relative;
+      z-index: 1;
     }
 
     .date {
-      font-size: 16px;
-      opacity: 0.7;
+      font-size: 17px;
+      opacity: 0.75;
       font-style: italic;
+      position: relative;
+      z-index: 1;
     }
 
     /* ============ STATS ============ */
     .stats {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 16px;
-      margin: 40px 0;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      margin: 45px 0;
       animation: slideInLeft 1s ease 0.3s both;
     }
 
     .stat {
-      background: var(--card-bg);
-      padding: 24px 20px;
-      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(26, 26, 40, 0.95), rgba(18, 18, 26, 0.95));
+      padding: 28px 22px;
+      border-radius: 20px;
       text-align: center;
-      border: 1px solid rgba(122, 162, 255, 0.2);
-      transition: all 0.3s ease;
+      border: 2px solid rgba(122, 162, 255, 0.25);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Animated glow background */
+    .stat::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      background: linear-gradient(45deg, 
+        transparent,
+        rgba(122, 162, 255, 0.4),
+        transparent
+      );
+      border-radius: 20px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: -1;
+      filter: blur(12px);
+      animation: borderRotate 4s linear infinite;
+    }
+
+    .stat:hover::before {
+      opacity: 1;
     }
 
     .stat:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px) scale(1.05);
       border-color: var(--primary);
-      box-shadow: 0 10px 30px rgba(122, 162, 255, 0.3);
+      box-shadow: 0 15px 40px rgba(122, 162, 255, 0.5);
+    }
+
+    /* Tema per stat */
+    .stat:nth-child(1) {
+      border-color: rgba(255, 105, 180, 0.25);
+    }
+
+    .stat:nth-child(1):hover {
+      border-color: rgba(255, 105, 180, 0.6);
+      box-shadow: 0 15px 40px rgba(255, 105, 180, 0.4);
+    }
+
+    .stat:nth-child(2) {
+      border-color: rgba(138, 43, 226, 0.25);
+    }
+
+    .stat:nth-child(2):hover {
+      border-color: rgba(138, 43, 226, 0.6);
+      box-shadow: 0 15px 40px rgba(138, 43, 226, 0.4);
+    }
+
+    .stat:nth-child(3) {
+      border-color: rgba(255, 215, 0, 0.25);
+    }
+
+    .stat:nth-child(3):hover {
+      border-color: rgba(255, 215, 0, 0.6);
+      box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
     }
 
     .stat-number {
-      font-size: 36px;
-      font-weight: bold;
-      background: linear-gradient(to right, var(--primary), var(--secondary));
+      font-size: 42px;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+      background-size: 200% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      animation: gradientShift 3s ease infinite;
+      filter: drop-shadow(0 0 15px rgba(122, 162, 255, 0.4));
+    }
+
+    .stat:nth-child(1) .stat-number {
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .stat:nth-child(2) .stat-number {
+      animation: heartBeat 1.5s ease-in-out infinite;
+    }
+
+    .stat:nth-child(3) .stat-number {
+      animation: bounce 2s ease-in-out infinite;
     }
 
     .stat-label {
@@ -601,6 +823,495 @@
       gap: 20px;
       margin: 40px 0;
       animation: fadeInUp 1s ease 0.6s both;
+    }
+
+    /* Submenu Our Celebration diperbesar ke bawah dengan tema warna */
+    .menu-grid.celebration-menu {
+      gap: 24px;
+    }
+
+    .celebration-menu .menu-card {
+      padding: 48px 28px;
+      min-height: 280px;
+      position: relative;
+    }
+
+    /* Tema 1 Month - Pink/Purple gradient */
+    .celebration-menu .menu-card:nth-child(1) {
+      background: linear-gradient(135deg, rgba(255, 105, 180, 0.15), rgba(147, 112, 219, 0.15));
+      border: 2px solid rgba(255, 105, 180, 0.3);
+    }
+
+    .celebration-menu .menu-card:nth-child(1):hover {
+      background: linear-gradient(135deg, rgba(255, 105, 180, 0.25), rgba(147, 112, 219, 0.25));
+      border-color: rgba(255, 105, 180, 0.6);
+      box-shadow: 0 20px 50px rgba(255, 105, 180, 0.4);
+    }
+
+    .celebration-menu .menu-card:nth-child(1) .menu-icon {
+      filter: drop-shadow(0 0 20px rgba(255, 105, 180, 0.6));
+      font-size: 64px;
+    }
+
+    /* Tema Valentine - Red/Pink gradient */
+    .celebration-menu .menu-card:nth-child(2) {
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(255, 182, 193, 0.15));
+      border: 2px solid rgba(255, 107, 107, 0.3);
+    }
+
+    .celebration-menu .menu-card:nth-child(2):hover {
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.25), rgba(255, 182, 193, 0.25));
+      border-color: rgba(255, 107, 107, 0.6);
+      box-shadow: 0 20px 50px rgba(255, 107, 107, 0.4);
+    }
+
+    .celebration-menu .menu-card:nth-child(2) .menu-icon {
+      filter: drop-shadow(0 0 20px rgba(255, 107, 107, 0.6));
+      font-size: 64px;
+    }
+
+    .celebration-menu .menu-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      margin-top: 16px;
+    }
+
+    .celebration-menu .menu-desc {
+      font-size: 15px;
+      line-height: 1.6;
+      opacity: 0.85;
+    }
+
+    /* Tambahan elemen visual untuk celebration menu */
+    .celebration-menu .menu-card {
+      overflow: visible;
+    }
+
+    /* Badge ribbon di corner */
+    .celebration-menu .menu-card::after {
+      content: '✨';
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: linear-gradient(135deg, #ffd700, #ffed4e);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.6);
+      animation: pulse 2s ease-in-out infinite;
+      z-index: 10;
+    }
+
+    .celebration-menu .menu-card:nth-child(1)::after {
+      content: '💕';
+      background: linear-gradient(135deg, #ff69b4, #ff1493);
+      box-shadow: 0 4px 15px rgba(255, 105, 180, 0.6);
+    }
+
+    .celebration-menu .menu-card:nth-child(2)::after {
+      content: '💝';
+      background: linear-gradient(135deg, #ff6b6b, #ff8fab);
+      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.6);
+    }
+
+    /* Animated gradient border */
+    .celebration-menu .menu-card::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      background: linear-gradient(45deg, 
+        rgba(255, 105, 180, 0.8), 
+        rgba(147, 112, 219, 0.8),
+        rgba(122, 162, 255, 0.8),
+        rgba(255, 105, 180, 0.8)
+      );
+      background-size: 300% 300%;
+      border-radius: 20px;
+      z-index: -1;
+      opacity: 0;
+      animation: gradientBorder 4s ease infinite;
+      filter: blur(8px);
+      transition: opacity 0.3s ease;
+    }
+
+    .celebration-menu .menu-card:hover::before {
+      opacity: 1;
+    }
+
+    @keyframes gradientBorder {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    /* Floating hearts particles */
+    .celebration-menu .menu-card:nth-child(1) .menu-icon::after,
+    .celebration-menu .menu-card:nth-child(1) .menu-icon::before {
+      content: '💗';
+      position: absolute;
+      font-size: 20px;
+      opacity: 0.4;
+      animation: floatParticle 3s ease-in-out infinite;
+    }
+
+    .celebration-menu .menu-card:nth-child(1) .menu-icon::after {
+      top: -20px;
+      left: -30px;
+      animation-delay: 0.5s;
+    }
+
+    .celebration-menu .menu-card:nth-child(1) .menu-icon::before {
+      bottom: -20px;
+      right: -30px;
+      animation-delay: 1.5s;
+    }
+
+    .celebration-menu .menu-card:nth-child(2) .menu-icon::after,
+    .celebration-menu .menu-card:nth-child(2) .menu-icon::before {
+      content: '💖';
+      position: absolute;
+      font-size: 20px;
+      opacity: 0.4;
+      animation: floatParticle 3s ease-in-out infinite;
+    }
+
+    .celebration-menu .menu-card:nth-child(2) .menu-icon::after {
+      top: -20px;
+      right: -30px;
+      animation-delay: 0.8s;
+    }
+
+    .celebration-menu .menu-card:nth-child(2) .menu-icon::before {
+      bottom: -20px;
+      left: -30px;
+      animation-delay: 1.2s;
+    }
+
+    @keyframes floatParticle {
+      0%, 100% { 
+        transform: translateY(0) rotate(0deg); 
+        opacity: 0.4;
+      }
+      50% { 
+        transform: translateY(-15px) rotate(180deg); 
+        opacity: 0.7;
+      }
+    }
+
+    /* Shimmer effect on hover */
+    .celebration-menu .menu-card:hover .menu-title {
+      animation: shimmer 1.5s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { 
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      }
+      50% { 
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.6),
+                     0 0 30px rgba(255, 105, 180, 0.4);
+      }
+    }
+
+    /* Submenu 1 Month Anniversary - setiap card punya tema sendiri */
+    .menu-grid.anniversary-submenu {
+      gap: 22px;
+    }
+
+    .anniversary-submenu .menu-card {
+      padding: 42px 26px;
+      min-height: 240px;
+    }
+
+    .anniversary-submenu .menu-icon {
+      font-size: 58px;
+      margin-bottom: 18px;
+    }
+
+    .anniversary-submenu .menu-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .anniversary-submenu .menu-desc {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    /* Surat - Soft Pink */
+    .anniversary-submenu .menu-card:nth-child(1) {
+      background: linear-gradient(135deg, rgba(255, 192, 203, 0.12), rgba(255, 182, 193, 0.12));
+      border: 2px solid rgba(255, 192, 203, 0.25);
+    }
+
+    .anniversary-submenu .menu-card:nth-child(1):hover {
+      background: linear-gradient(135deg, rgba(255, 192, 203, 0.22), rgba(255, 182, 193, 0.22));
+      border-color: rgba(255, 192, 203, 0.5);
+      box-shadow: 0 15px 40px rgba(255, 192, 203, 0.35);
+    }
+
+    .anniversary-submenu .menu-card:nth-child(1) .menu-icon {
+      filter: drop-shadow(0 0 15px rgba(255, 192, 203, 0.5));
+    }
+
+    /* Alasan Cinta - Rose Pink */
+    .anniversary-submenu .menu-card:nth-child(2) {
+      background: linear-gradient(135deg, rgba(255, 105, 180, 0.12), rgba(219, 112, 147, 0.12));
+      border: 2px solid rgba(255, 105, 180, 0.25);
+    }
+
+    .anniversary-submenu .menu-card:nth-child(2):hover {
+      background: linear-gradient(135deg, rgba(255, 105, 180, 0.22), rgba(219, 112, 147, 0.22));
+      border-color: rgba(255, 105, 180, 0.5);
+      box-shadow: 0 15px 40px rgba(255, 105, 180, 0.35);
+    }
+
+    .anniversary-submenu .menu-card:nth-child(2) .menu-icon {
+      filter: drop-shadow(0 0 15px rgba(255, 105, 180, 0.5));
+    }
+
+    /* Momen Spesial - Purple Blue */
+    .anniversary-submenu .menu-card:nth-child(3) {
+      background: linear-gradient(135deg, rgba(147, 112, 219, 0.12), rgba(138, 43, 226, 0.12));
+      border: 2px solid rgba(147, 112, 219, 0.25);
+    }
+
+    .anniversary-submenu .menu-card:nth-child(3):hover {
+      background: linear-gradient(135deg, rgba(147, 112, 219, 0.22), rgba(138, 43, 226, 0.22));
+      border-color: rgba(147, 112, 219, 0.5);
+      box-shadow: 0 15px 40px rgba(147, 112, 219, 0.35);
+    }
+
+    .anniversary-submenu .menu-card:nth-child(3) .menu-icon {
+      filter: drop-shadow(0 0 15px rgba(147, 112, 219, 0.5));
+    }
+
+    /* Timeline - Sky Blue */
+    .anniversary-submenu .menu-card:nth-child(4) {
+      background: linear-gradient(135deg, rgba(122, 162, 255, 0.12), rgba(100, 149, 237, 0.12));
+      border: 2px solid rgba(122, 162, 255, 0.25);
+    }
+
+    .anniversary-submenu .menu-card:nth-child(4):hover {
+      background: linear-gradient(135deg, rgba(122, 162, 255, 0.22), rgba(100, 149, 237, 0.22));
+      border-color: rgba(122, 162, 255, 0.5);
+      box-shadow: 0 15px 40px rgba(122, 162, 255, 0.35);
+    }
+
+    .anniversary-submenu .menu-card:nth-child(4) .menu-icon {
+      filter: drop-shadow(0 0 15px rgba(122, 162, 255, 0.5));
+    }
+
+    /* Galeri - Teal */
+    .anniversary-submenu .menu-card:nth-child(5) {
+      background: linear-gradient(135deg, rgba(64, 224, 208, 0.12), rgba(72, 209, 204, 0.12));
+      border: 2px solid rgba(64, 224, 208, 0.25);
+    }
+
+    .anniversary-submenu .menu-card:nth-child(5):hover {
+      background: linear-gradient(135deg, rgba(64, 224, 208, 0.22), rgba(72, 209, 204, 0.22));
+      border-color: rgba(64, 224, 208, 0.5);
+      box-shadow: 0 15px 40px rgba(64, 224, 208, 0.35);
+    }
+
+    .anniversary-submenu .menu-card:nth-child(5) .menu-icon {
+      filter: drop-shadow(0 0 15px rgba(64, 224, 208, 0.5));
+    }
+
+    /* Pesan Spesial - Gold/Orange */
+    .anniversary-submenu .menu-card:nth-child(6) {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(255, 165, 0, 0.12));
+      border: 2px solid rgba(255, 215, 0, 0.25);
+    }
+
+    .anniversary-submenu .menu-card:nth-child(6):hover {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.22), rgba(255, 165, 0, 0.22));
+      border-color: rgba(255, 215, 0, 0.5);
+      box-shadow: 0 15px 40px rgba(255, 215, 0, 0.35);
+    }
+
+    .anniversary-submenu .menu-card:nth-child(6) .menu-icon {
+      filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.5));
+    }
+
+    /* Elemen visual tambahan untuk anniversary submenu */
+    
+    /* Corner decorations - berbeda per card */
+    .anniversary-submenu .menu-card::before {
+      content: '';
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      opacity: 0.15;
+      animation: pulseCorner 3s ease-in-out infinite;
+    }
+
+    .anniversary-submenu .menu-card:nth-child(1)::before {
+      background: radial-gradient(circle, #ffc0cb, transparent);
+      top: -20px;
+      left: -20px;
+    }
+
+    .anniversary-submenu .menu-card:nth-child(2)::before {
+      background: radial-gradient(circle, #ff69b4, transparent);
+      top: -20px;
+      right: -20px;
+    }
+
+    .anniversary-submenu .menu-card:nth-child(3)::before {
+      background: radial-gradient(circle, #9370db, transparent);
+      bottom: -20px;
+      left: -20px;
+    }
+
+    .anniversary-submenu .menu-card:nth-child(4)::before {
+      background: radial-gradient(circle, #7aa2ff, transparent);
+      bottom: -20px;
+      right: -20px;
+    }
+
+    .anniversary-submenu .menu-card:nth-child(5)::before {
+      background: radial-gradient(circle, #40e0d0, transparent);
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .anniversary-submenu .menu-card:nth-child(6)::before {
+      background: radial-gradient(circle, #ffd700, transparent);
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    @keyframes pulseCorner {
+      0%, 100% { 
+        transform: scale(1) translateX(-50%);
+        opacity: 0.15;
+      }
+      50% { 
+        transform: scale(1.3) translateX(-50%);
+        opacity: 0.25;
+      }
+    }
+
+    /* Badge label di sudut */
+    .anniversary-submenu .menu-card::after {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: bold;
+      z-index: 5;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      animation: badgePulse 2s ease-in-out infinite;
+    }
+
+    .anniversary-submenu .menu-card:nth-child(1)::after {
+      content: '💌 Sweet';
+      background: linear-gradient(135deg, #ffc0cb, #ffb6c1);
+      color: #8b0045;
+    }
+
+    .anniversary-submenu .menu-card:nth-child(2)::after {
+      content: '💕 Love';
+      background: linear-gradient(135deg, #ff69b4, #db7093);
+      color: #fff;
+    }
+
+    .anniversary-submenu .menu-card:nth-child(3)::after {
+      content: '📸 Memory';
+      background: linear-gradient(135deg, #9370db, #8a2be2);
+      color: #fff;
+    }
+
+    .anniversary-submenu .menu-card:nth-child(4)::after {
+      content: '⏰ Time';
+      background: linear-gradient(135deg, #7aa2ff, #6495ed);
+      color: #fff;
+    }
+
+    .anniversary-submenu .menu-card:nth-child(5)::after {
+      content: '🎨 Art';
+      background: linear-gradient(135deg, #40e0d0, #48d1cc);
+      color: #004d4d;
+    }
+
+    .anniversary-submenu .menu-card:nth-child(6)::after {
+      content: '💝 Gift';
+      background: linear-gradient(135deg, #ffd700, #ffa500);
+      color: #804000;
+    }
+
+    @keyframes badgePulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    /* Sparkle effect saat hover */
+    .anniversary-submenu .menu-card:hover {
+      animation: cardSparkle 0.6s ease;
+    }
+
+    @keyframes cardSparkle {
+      0%, 100% { 
+        filter: brightness(1);
+      }
+      50% { 
+        filter: brightness(1.2) saturate(1.3);
+      }
+    }
+
+    /* Floating dots decoration */
+    .anniversary-submenu .menu-card .menu-icon {
+      position: relative;
+    }
+
+    .anniversary-submenu .menu-card:hover .menu-icon {
+      animation: iconBounce 0.6s ease;
+    }
+
+    @keyframes iconBounce {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      25% { transform: translateY(-10px) rotate(-5deg); }
+      75% { transform: translateY(-5px) rotate(5deg); }
+    }
+
+    /* Glow ring effect */
+    .anniversary-submenu .menu-card:hover .menu-title {
+      position: relative;
+    }
+
+    .anniversary-submenu .menu-card:hover .menu-title::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -8px;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, currentColor, transparent);
+      border-radius: 2px;
+      animation: underlineGlow 1s ease-in-out infinite;
+    }
+
+    @keyframes underlineGlow {
+      0%, 100% { 
+        opacity: 0.5;
+        width: 40px;
+      }
+      50% { 
+        opacity: 1;
+        width: 80px;
+      }
     }
 
     .menu-card {
@@ -642,27 +1353,107 @@
     }
 
     .menu-icon {
-      font-size: 48px;
-      margin-bottom: 16px;
+      font-size: 52px;
+      margin-bottom: 18px;
       display: block;
       animation: float 3s infinite ease-in-out;
       position: relative;
       z-index: 1;
+      filter: drop-shadow(0 0 20px rgba(122, 162, 255, 0.4));
+    }
+
+    /* Main menu home - tema per card */
+    #menu .menu-card:nth-child(1) {
+      background: linear-gradient(135deg, rgba(255, 105, 180, 0.08), rgba(255, 182, 193, 0.08));
+      border: 2px solid rgba(255, 105, 180, 0.25);
+    }
+
+    #menu .menu-card:nth-child(1):hover {
+      background: linear-gradient(135deg, rgba(255, 105, 180, 0.15), rgba(255, 182, 193, 0.15));
+      border-color: rgba(255, 105, 180, 0.5);
+      box-shadow: 0 20px 50px rgba(255, 105, 180, 0.4);
+    }
+
+    #menu .menu-card:nth-child(1) .menu-icon {
+      filter: drop-shadow(0 0 25px rgba(255, 105, 180, 0.6));
+    }
+
+    #menu .menu-card:nth-child(2) {
+      background: linear-gradient(135deg, rgba(138, 43, 226, 0.08), rgba(147, 112, 219, 0.08));
+      border: 2px solid rgba(138, 43, 226, 0.25);
+    }
+
+    #menu .menu-card:nth-child(2):hover {
+      background: linear-gradient(135deg, rgba(138, 43, 226, 0.15), rgba(147, 112, 219, 0.15));
+      border-color: rgba(138, 43, 226, 0.5);
+      box-shadow: 0 20px 50px rgba(138, 43, 226, 0.4);
+    }
+
+    #menu .menu-card:nth-child(2) .menu-icon {
+      filter: drop-shadow(0 0 25px rgba(138, 43, 226, 0.6));
+    }
+
+    #menu .menu-card:nth-child(3) {
+      background: linear-gradient(135deg, rgba(64, 224, 208, 0.08), rgba(72, 209, 204, 0.08));
+      border: 2px solid rgba(64, 224, 208, 0.25);
+    }
+
+    #menu .menu-card:nth-child(3):hover {
+      background: linear-gradient(135deg, rgba(64, 224, 208, 0.15), rgba(72, 209, 204, 0.15));
+      border-color: rgba(64, 224, 208, 0.5);
+      box-shadow: 0 20px 50px rgba(64, 224, 208, 0.4);
+    }
+
+    #menu .menu-card:nth-child(3) .menu-icon {
+      filter: drop-shadow(0 0 25px rgba(64, 224, 208, 0.6));
+    }
+
+    /* Badge untuk main menu */
+    #menu .menu-card::after {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      z-index: 5;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.3);
+      animation: badgePulse 2s ease-in-out infinite;
+    }
+
+    #menu .menu-card:nth-child(1)::after {
+      content: '✨ Special';
+      background: linear-gradient(135deg, #ff69b4, #ffb6c1);
+      color: #fff;
+    }
+
+    #menu .menu-card:nth-child(2)::after {
+      content: '🎮 Play';
+      background: linear-gradient(135deg, #8a2be2, #9370db);
+      color: #fff;
+    }
+
+    #menu .menu-card:nth-child(3)::after {
+      content: '📝 Share';
+      background: linear-gradient(135deg, #40e0d0, #48d1cc);
+      color: #004d4d;
     }
 
     .menu-title {
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 8px;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 10px;
       position: relative;
       z-index: 1;
     }
 
     .menu-desc {
       font-size: 14px;
-      opacity: 0.7;
+      opacity: 0.75;
       position: relative;
       z-index: 1;
+      line-height: 1.4;
     }
 
     /* ============ SECTIONS ============ */
@@ -3214,6 +4005,347 @@
       opacity: 0.5;
     }
 
+    /* ============ VALENTINE DAY STYLES ============ */
+    
+    /* Special card styling */
+    .valentine-special-card {
+      position: relative;
+      overflow: visible;
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.05), rgba(255, 182, 193, 0.05));
+      border: 2px solid rgba(255, 107, 107, 0.2);
+    }
+
+    /* Floating hearts decoration */
+    .valentine-floating-hearts {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .float-heart {
+      position: absolute;
+      bottom: -50px;
+      font-size: 24px;
+      opacity: 0;
+      animation: floatHeartUp 8s ease-in infinite;
+    }
+
+    @keyframes floatHeartUp {
+      0% {
+        bottom: -50px;
+        opacity: 0;
+        transform: translateX(0) rotate(0deg);
+      }
+      10% {
+        opacity: 0.6;
+      }
+      90% {
+        opacity: 0.4;
+      }
+      100% {
+        bottom: 100%;
+        opacity: 0;
+        transform: translateX(50px) rotate(360deg);
+      }
+    }
+
+    /* Date badge */
+    .valentine-date-badge {
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(255, 182, 193, 0.15));
+      border: 3px solid rgba(255, 107, 107, 0.3);
+      border-radius: 20px;
+      padding: 20px 30px;
+      margin: 0 auto 25px;
+      max-width: 400px;
+      position: relative;
+      box-shadow: 0 8px 25px rgba(255, 107, 107, 0.2);
+    }
+
+    .badge-icon {
+      font-size: 40px;
+      animation: wiggle 2s ease-in-out infinite;
+    }
+
+    /* Day counter */
+    .valentine-day-counter {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+      padding: 15px 30px;
+      background: linear-gradient(135deg, rgba(122, 162, 255, 0.15), rgba(155, 125, 255, 0.15));
+      border-radius: 50px;
+      max-width: 350px;
+      margin-left: auto;
+      margin-right: auto;
+      border: 2px solid rgba(122, 162, 255, 0.3);
+    }
+
+    .counter-label {
+      font-size: 16px;
+      opacity: 0.9;
+      font-weight: 600;
+    }
+
+    .counter-number {
+      font-size: 36px;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--accent), #ff8fab);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* Love letter styling */
+    .valentine-love-letter {
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 182, 193, 0.1));
+      padding: 30px;
+      border-radius: 20px;
+      margin-bottom: 35px;
+      border: 2px solid rgba(255, 107, 107, 0.3);
+      position: relative;
+      box-shadow: 0 10px 30px rgba(255, 107, 107, 0.15);
+    }
+
+    .letter-seal {
+      position: absolute;
+      top: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 50px;
+      background: var(--card-bg);
+      padding: 5px 15px;
+      border-radius: 50%;
+      border: 3px solid rgba(255, 107, 107, 0.3);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    /* Quote marks */
+    .quote-mark {
+      position: absolute;
+      font-size: 80px;
+      font-family: Georgia, serif;
+      color: rgba(255, 107, 107, 0.2);
+      font-weight: bold;
+      line-height: 1;
+      z-index: 1;
+    }
+
+    .quote-left {
+      top: 10px;
+      left: 15px;
+    }
+
+    .quote-right {
+      bottom: 10px;
+      right: 15px;
+      transform: rotate(180deg);
+    }
+
+    .valentine-container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .valentine-text-display {
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.12), rgba(255, 148, 194, 0.12));
+      border-radius: 24px;
+      padding: 50px 40px;
+      margin-bottom: 30px;
+      border: 3px solid rgba(255, 107, 107, 0.3);
+      position: relative;
+      overflow: visible;
+      box-shadow: 0 15px 40px rgba(255, 107, 107, 0.2);
+    }
+
+    .valentine-text-display::before {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      background: linear-gradient(45deg, 
+        rgba(255, 107, 107, 0.3),
+        rgba(255, 182, 193, 0.3),
+        rgba(255, 148, 194, 0.3),
+        rgba(255, 107, 107, 0.3)
+      );
+      background-size: 300% 300%;
+      border-radius: 24px;
+      z-index: -1;
+      opacity: 0.5;
+      animation: gradientBorder 5s ease infinite;
+      filter: blur(15px);
+    }
+
+    .valentine-message {
+      font-size: 21px;
+      line-height: 1.9;
+      text-align: center;
+      color: var(--light);
+      font-style: italic;
+      animation: fadeInUp 0.8s ease;
+      position: relative;
+      z-index: 2;
+      padding: 0 30px;
+      font-weight: 500;
+    }
+
+    .valentine-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .valentine-control-btn {
+      padding: 14px 28px;
+      background: linear-gradient(135deg, var(--accent), #ff8fab);
+      border: none;
+      border-radius: 15px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 15px;
+      flex: 1;
+      min-width: 140px;
+      box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .valentine-control-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .valentine-control-btn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .valentine-control-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(255, 107, 107, 0.5);
+    }
+
+    .valentine-control-btn:active {
+      transform: translateY(-2px);
+    }
+
+    .valentine-indicator {
+      font-size: 17px;
+      font-weight: bold;
+      color: var(--light);
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.25), rgba(255, 148, 194, 0.25));
+      padding: 12px 24px;
+      border-radius: 12px;
+      border: 2px solid rgba(255, 107, 107, 0.4);
+      min-width: 90px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.2);
+    }
+
+    .valentine-auto-btn {
+      width: 100%;
+      padding: 16px 32px;
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      border: none;
+      border-radius: 16px;
+      color: white;
+      font-weight: bold;
+      font-size: 17px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+      box-shadow: 0 6px 20px rgba(122, 162, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .valentine-auto-btn::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      bottom: -50%;
+      left: -50%;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.2), transparent);
+      transform: rotateZ(60deg) translate(-5em, 7.5em);
+    }
+
+    .valentine-auto-btn:hover::after {
+      animation: shimmerSlide 1s ease-in-out;
+    }
+
+    @keyframes shimmerSlide {
+      to { transform: rotateZ(60deg) translate(1em, -9em); }
+    }
+
+    .valentine-auto-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(122, 162, 255, 0.5);
+    }
+
+    .valentine-auto-btn.active {
+      background: linear-gradient(135deg, #ff6b6b, #ff8fab);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @media (max-width: 600px) {
+      .valentine-message {
+        font-size: 17px;
+        padding: 0 15px;
+      }
+      
+      .valentine-text-display {
+        min-height: 250px;
+        padding: 35px 25px;
+      }
+      
+      .valentine-control-btn {
+        font-size: 14px;
+        padding: 12px 20px;
+        min-width: 110px;
+      }
+      
+      .valentine-indicator {
+        font-size: 15px;
+        padding: 10px 18px;
+      }
+
+      .quote-mark {
+        font-size: 50px;
+      }
+
+      .counter-number {
+        font-size: 28px;
+      }
+
+      .float-heart {
+        font-size: 18px;
+      }
+    }
+
 
   </style>
 </head>
@@ -3318,7 +4450,7 @@
     <div class="menu-grid" id="menu">
       <div class="menu-card" onclick="openSection('anniversary')">
         <span class="menu-icon">🎉</span>
-        <h3 class="menu-title">Milestones</h3>
+        <h3 class="menu-title">Our Celebration</h3>
         <p class="menu-desc">Momen-momen spesial kita</p>
       </div>
 
@@ -3342,20 +4474,20 @@
           <span>←</span>
           <span>Kembali</span>
         </button>
-        <h2 class="section-title">🎉 Milestones</h2>
+        <h2 class="section-title">🎉 Our Celebration</h2>
       </div>
 
-      <div class="menu-grid">
+      <div class="menu-grid celebration-menu">
         <div class="menu-card" onclick="openSection('onemonth')">
           <span class="menu-icon">💕</span>
           <h3 class="menu-title">1 Month</h3>
           <p class="menu-desc">9 Jan - 9 Feb 2026</p>
         </div>
 
-        <div class="menu-card milestone-locked">
-          <span class="menu-icon">🔒</span>
-          <h3 class="menu-title" style="opacity:0.45;">• • •</h3>
-          <p class="menu-desc" style="opacity:0.35;">Segera hadir...</p>
+        <div class="menu-card" onclick="openSection('valentine')">
+          <span class="menu-icon">💝</span>
+          <h3 class="menu-title">First Valentine</h3>
+          <p class="menu-desc">14 Feb - Hari ke-36 bersama</p>
         </div>
 
         <div class="menu-card milestone-locked">
@@ -3376,7 +4508,7 @@
         <h2 class="section-title">💕 1 Month Anniversary</h2>
       </div>
 
-      <div class="menu-grid">
+      <div class="menu-grid anniversary-submenu">
         <div class="menu-card" onclick="openSection('surat')">
           <span class="menu-icon">💌</span>
           <h3 class="menu-title">Surat Untuk Kamu</h3>
@@ -3415,7 +4547,353 @@
       </div>
     </div>
 
-    <!-- ============ SURAT CINTA SECTION ============ -->
+    <!-- ============ VALENTINE DAY SECTION ============ -->
+    <div class="section" id="valentine">
+      <div class="section-header">
+        <button class="back-btn" onclick="goBack()">
+          <span>←</span>
+          <span>Kembali</span>
+        </button>
+        <h2 class="section-title">💝 Our First Valentine</h2>
+      </div>
+
+      <div class="content-card valentine-special-card">
+        <!-- Floating hearts decoration -->
+        <div class="valentine-floating-hearts">
+          <span class="float-heart" style="left: 5%; animation-delay: 0s;">💕</span>
+          <span class="float-heart" style="left: 15%; animation-delay: 1s;">💖</span>
+          <span class="float-heart" style="left: 25%; animation-delay: 2s;">💗</span>
+          <span class="float-heart" style="left: 35%; animation-delay: 0.5s;">💓</span>
+          <span class="float-heart" style="left: 45%; animation-delay: 1.5s;">💝</span>
+          <span class="float-heart" style="left: 55%; animation-delay: 2.5s;">💕</span>
+          <span class="float-heart" style="left: 65%; animation-delay: 0.8s;">💖</span>
+          <span class="float-heart" style="left: 75%; animation-delay: 1.8s;">💗</span>
+          <span class="float-heart" style="left: 85%; animation-delay: 2.2s;">💓</span>
+          <span class="float-heart" style="left: 95%; animation-delay: 1.2s;">💝</span>
+        </div>
+
+        <div class="valentine-header-info">
+          <div class="valentine-date-badge">
+            <div class="badge-icon">📅</div>
+            <h3 style="font-size: 26px; margin: 8px 0; font-weight: 800;">14 Februari 2026</h3>
+          </div>
+          <div class="valentine-day-counter">
+            <span class="counter-label">Hari Bersama Ke-</span>
+            <span class="counter-number" id="valentineDayNumber">415</span>
+          </div>
+          <p style="text-align: center; font-style: italic; opacity: 0.85; margin: 20px 0 30px; font-size: 15px; max-width: 500px; margin-left: auto; margin-right: auto;">
+            💕 Valentine pertama kita, dan masih banyak Valentine lainnya yang akan kita rayakan bersama ❤️
+          </p>
+        </div>
+
+        <div class="valentine-love-letter">
+          <div class="letter-seal">💌</div>
+          <p style="font-size: 16px; line-height: 1.9; text-align: center; font-style: italic;">
+            <strong style="font-size: 18px; display: block; margin-bottom: 15px; color: var(--accent);">Sayang,</strong>
+            Valentine pertama kita! Mungkin kita belum lama bersama, tapi serius deh, rasanya kayak jatuh cinta sama WiFi gratis unlimited - unexpected tapi bikin hidup jadi lebih baik! 😂<br><br>
+            
+            Setiap hari bersamamu adalah Valentine buat aku. Tapi hari ini spesial, karena ini hari dimana seluruh dunia 
+            merayakan cinta. Dan aku? Aku merayakan keberuntungan karena punya kamuuu. 😋<br><br>
+            
+            Fun fact: Aku udah mulai ngitung Valentine kita kedua, ketiga, sampe yang ke-100. Optimis banget kan? 
+            Tapi ya gimana, cinta aku sama kamu tuh kayak baterai HP - mestinya low tapi entah kenapa masih 100% terus! 🔋💕<br><br>
+            
+            Btw dibawah masih ada pesan tuhhh 😉<br><br>
+            
+            <strong style="font-size: 20px; color: var(--accent); display: inline-block; margin-top: 10px; animation: heartBeat 1.5s ease-in-out infinite;">Happy Valentine's Day, Sayangku! 💝</strong>
+          </p>
+        </div>
+
+        <div class="valentine-container">
+          <div class="valentine-text-display" id="valentineTextDisplay">
+            <div class="quote-mark quote-left">"</div>
+            <p class="valentine-message show" id="valentineMessage">Sayanggg 💕</p>
+            <div class="quote-mark quote-right">"</div>
+          </div>
+          
+          <div class="valentine-controls">
+            <button class="valentine-control-btn" onclick="valentinePrev()">
+              ← Sebelumnya
+            </button>
+            <div class="valentine-indicator">
+              <span id="valentineCurrentIndex">1</span> / <span id="valentineTotalCount">24</span>
+            </div>
+            <button class="valentine-control-btn" onclick="valentineNext()">
+              Berikutnya →
+            </button>
+          </div>
+          
+          <button class="valentine-auto-btn" id="valentineAutoBtn" onclick="valentineToggleAuto()">
+            ▶️ Putar Otomatis
+          </button>
+        </div>
+        
+        <script>
+        // EMBEDDED VALENTINE SCRIPT - Langsung di HTML!
+        (function() {
+          console.log('🌹 Valentine embedded script loaded!');
+          
+          const msgs = [
+            "Sayanggg 💕",
+            "Hari ini adalah harii yang sangatt spesiall ✨🎉",
+            "Iyaa... 😊",
+            "14 Februari adalah hari Valentine 💝",
+            "Hari kasih sayangg 💖❤️",
+            "Meskipun aku sayang kamu tiap hari sih yaa 🥰",
+            "Tapi tetep aja perlu dirayakan 🎉",
+            "Kenapa? 🤔",
+            "Gatau sih, mau aja wkwk😂",
+            "Nggak nggakk.... 🙈",
+            "Akuu... 👉👈",
+            "Mau... 💭",
+            "Merayakan... ✨",
+            "Sesuatu yang special... 💫",
+            "Bersama orang yang special... 💕",
+            "Ooooomaigatttt wkwk 😆🤭",
+            "Di hari Valentine ini... 🌹",
+            "Jika diberikan pilihan 🤔💭",
+            "Coklat 🍫",
+            "Bunga 🌷💐",
+            "Atau baik-baik saja...💞",
+            "Maka aku akan memilih 👉",
+            "Baik-baik saja denganmu 💑✨",
+            "HAPPY VALENTINE DAY! 🎊💝🎉"
+          ];
+          
+          // Tema untuk setiap pesan
+          const themes = [
+            'sweet', 'sweet', 'sweet',
+            'valentine', 'valentine',
+            'playful', 'playful', 'playful', 'playful',
+            'mysterious', 'mysterious', 'mysterious', 'mysterious', 'mysterious',
+            'reveal',
+            'funny',
+            'romantic', 'romantic', 'romantic', 'romantic',
+            'peak', 'peak', 'peak',
+            'finale'
+          ];
+          
+          let idx = 0;
+          let autoInt = null;
+          let isAuto = false;
+          
+          // Update display dengan tema dan efek
+          function updateDisplay() {
+            const el = document.getElementById('valentineMessage');
+            const idxEl = document.getElementById('valentineCurrentIndex');
+            const valentineSection = document.getElementById('valentine');
+            
+            if (!el) return;
+            
+            const theme = themes[idx];
+            
+            // Update tema section
+            if (valentineSection) {
+              valentineSection.className = 'section theme-' + theme;
+            }
+            
+            // Animasi fade
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+              el.textContent = msgs[idx];
+              if (idxEl) idxEl.textContent = idx + 1;
+              
+              // Reset classes
+              el.className = 'valentine-message show';
+              
+              // Add theme-specific animation
+              if (theme === 'mysterious') {
+                el.classList.add('mysterious-appear');
+              } else if (theme === 'reveal') {
+                el.classList.add('reveal-boom');
+                createFireworks();
+                createConfetti(50);
+              } else if (theme === 'funny') {
+                el.classList.add('funny-bounce');
+              } else if (theme === 'finale') {
+                el.classList.add('finale-mega');
+                createMegaExplosion();
+              }
+              
+              el.style.opacity = '1';
+              el.style.transform = 'translateY(0)';
+              
+              // Create particles
+              if (theme === 'sweet' || theme === 'valentine') {
+                createHearts(3);
+              } else if (theme === 'playful' || theme === 'romantic' || theme === 'peak') {
+                createSparkles(5);
+              }
+            }, 300);
+          }
+          
+          window.valentineNext = function() {
+            idx = (idx + 1) % msgs.length;
+            updateDisplay();
+          };
+          
+          window.valentinePrev = function() {
+            idx = (idx - 1 + msgs.length) % msgs.length;
+            updateDisplay();
+          };
+          
+          window.valentineToggleAuto = function() {
+            const btn = document.getElementById('valentineAutoBtn');
+            if (isAuto) {
+              clearInterval(autoInt);
+              isAuto = false;
+              if (btn) btn.textContent = '▶️ Putar Otomatis';
+            } else {
+              isAuto = true;
+              if (btn) btn.textContent = '⏸️ Berhenti';
+              autoInt = setInterval(() => window.valentineNext(), 5000);
+            }
+          };
+          
+          
+          // Particle effects functions
+          function createHearts(count) {
+            for (let i = 0; i < count; i++) {
+              setTimeout(() => {
+                const heart = document.createElement('div');
+                heart.textContent = ['💕', '💖', '💗', '💓', '💝'][Math.floor(Math.random() * 5)];
+                heart.style.cssText = `
+                  position: fixed;
+                  left: ${Math.random() * window.innerWidth}px;
+                  top: ${window.innerHeight}px;
+                  font-size: ${20 + Math.random() * 20}px;
+                  pointer-events: none;
+                  z-index: 9999;
+                  animation: floatUp 4s ease-out forwards;
+                `;
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 4000);
+              }, i * 100);
+            }
+          }
+          
+          function createSparkles(count) {
+            for (let i = 0; i < count; i++) {
+              setTimeout(() => {
+                const sparkle = document.createElement('div');
+                sparkle.style.cssText = `
+                  position: fixed;
+                  width: 6px;
+                  height: 6px;
+                  background: white;
+                  border-radius: 50%;
+                  left: ${Math.random() * window.innerWidth}px;
+                  top: ${Math.random() * window.innerHeight}px;
+                  pointer-events: none;
+                  z-index: 9999;
+                  box-shadow: 0 0 ${5 + Math.random() * 10}px rgba(255, 255, 255, 0.8);
+                  animation: sparkle 2s ease-in-out forwards;
+                `;
+                document.body.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 2000);
+              }, i * 100);
+            }
+          }
+          
+          function createConfetti(count) {
+            const colors = ['#ff6b9d', '#ffd93d', '#6bcf7f', '#c06c84', '#f67280'];
+            for (let i = 0; i < count; i++) {
+              setTimeout(() => {
+                const confetti = document.createElement('div');
+                confetti.style.cssText = `
+                  position: fixed;
+                  width: 10px;
+                  height: 10px;
+                  background: ${colors[Math.floor(Math.random() * colors.length)]};
+                  left: ${Math.random() * window.innerWidth}px;
+                  top: -10px;
+                  pointer-events: none;
+                  z-index: 9999;
+                  animation: floatUp 3s ease-out forwards;
+                  animation-delay: ${Math.random() * 0.5}s;
+                `;
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 3500);
+              }, i * 30);
+            }
+          }
+          
+          function createFireworks() {
+            const positions = [{x:20,y:20},{x:80,y:20},{x:50,y:40}];
+            positions.forEach((pos, pIdx) => {
+              setTimeout(() => {
+                const centerX = (window.innerWidth * pos.x) / 100;
+                const centerY = (window.innerHeight * pos.y) / 100;
+                for (let i = 0; i < 20; i++) {
+                  const angle = (Math.PI * 2 * i) / 20;
+                  const velocity = 80 + Math.random() * 80;
+                  const tx = Math.cos(angle) * velocity;
+                  const ty = Math.sin(angle) * velocity;
+                  const firework = document.createElement('div');
+                  firework.style.cssText = `position:fixed;width:4px;height:4px;border-radius:50%;left:${centerX}px;top:${centerY}px;background:hsl(${Math.random()*360},100%,60%);pointer-events:none;z-index:9999;`;
+                  firework.animate([
+                    {transform:'translate(0,0) scale(1)',opacity:1},
+                    {transform:`translate(${tx}px,${ty}px) scale(0)`,opacity:0}
+                  ],{duration:1500,easing:'ease-out'});
+                  document.body.appendChild(firework);
+                  setTimeout(() => firework.remove(), 1500);
+                }
+              }, pIdx * 200);
+            });
+          }
+          
+          function createMegaExplosion() {
+            createConfetti(100);
+            setTimeout(() => createFireworks(), 200);
+            setTimeout(() => createFireworks(), 800);
+            setTimeout(() => createFireworks(), 1400);
+            setTimeout(() => { for(let i=0;i<20;i++) setTimeout(()=>createHearts(1),i*100); }, 500);
+            setTimeout(() => { for(let i=0;i<30;i++) setTimeout(()=>createSparkles(3),i*80); }, 1000);
+          }
+          
+          // Add animation styles
+          const style = document.createElement('style');
+          style.textContent = `
+            @keyframes floatUp {
+              0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+              100% { transform: translateY(-${window.innerHeight+100}px) rotate(360deg); opacity: 0; }
+            }
+            @keyframes sparkle {
+              0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+              50% { opacity: 1; transform: scale(1.5) rotate(180deg); }
+            }
+            #valentine.theme-sweet{background:linear-gradient(135deg,rgba(255,195,160,0.1),rgba(255,175,189,0.1))}
+            #valentine.theme-valentine{background:linear-gradient(135deg,rgba(255,107,157,0.15),rgba(192,108,132,0.15))}
+            #valentine.theme-playful{background:linear-gradient(135deg,rgba(255,160,122,0.12),rgba(250,128,114,0.12))}
+            #valentine.theme-mysterious{background:linear-gradient(135deg,rgba(44,0,62,0.3),rgba(10,10,10,0.3));filter:brightness(0.7)}
+            #valentine.theme-reveal{background:linear-gradient(135deg,rgba(255,215,0,0.2),rgba(255,237,78,0.2),rgba(255,255,255,0.2));animation:glowPulse 2s ease-in-out infinite}
+            #valentine.theme-funny{background:linear-gradient(135deg,rgba(255,217,61,0.15),rgba(107,207,127,0.15))}
+            #valentine.theme-romantic{background:linear-gradient(135deg,rgba(210,153,194,0.12),rgba(254,249,215,0.12))}
+            #valentine.theme-peak{background:linear-gradient(135deg,rgba(255,8,68,0.18),rgba(255,177,153,0.18))}
+            #valentine.theme-finale{background:linear-gradient(135deg,rgba(255,8,68,0.2),rgba(255,177,153,0.2),rgba(255,215,0,0.2));animation:rainbowShift 3s linear infinite}
+            @keyframes glowPulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.2)}}
+            @keyframes rainbowShift{0%{filter:hue-rotate(0deg) brightness(1)}50%{filter:hue-rotate(180deg) brightness(1.1)}100%{filter:hue-rotate(360deg) brightness(1)}}
+            .valentine-message.mysterious-appear{animation:mysteriousAppear 2s ease;letter-spacing:2px}
+            .valentine-message.reveal-boom{animation:revealBoom 1.5s ease;font-size:28px!important;font-weight:bold;text-shadow:0 0 20px rgba(255,215,0,0.8)}
+            .valentine-message.funny-bounce{animation:bounceIn 0.8s ease;font-size:24px}
+            .valentine-message.finale-mega{animation:finaleAppear 4s ease;font-size:32px!important;font-weight:900;text-shadow:0 0 30px rgba(255,215,0,1),0 0 60px rgba(255,107,157,0.8);letter-spacing:3px}
+            @keyframes mysteriousAppear{0%{opacity:0;letter-spacing:10px;filter:blur(10px)}100%{opacity:1;letter-spacing:2px;filter:blur(0)}}
+            @keyframes revealBoom{0%{opacity:0;transform:scale(0.3);filter:blur(20px)}50%{transform:scale(1.3)}100%{opacity:1;transform:scale(1);filter:blur(0)}}
+            @keyframes bounceIn{0%{opacity:0;transform:scale(0.3) rotate(-10deg)}50%{transform:scale(1.1) rotate(5deg)}70%{transform:scale(0.9) rotate(-3deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
+            @keyframes finaleAppear{0%{opacity:0;transform:scale(0.1) rotate(-180deg);filter:blur(30px)}30%{opacity:0.5;transform:scale(0.5) rotate(-90deg)}60%{opacity:0.8;transform:scale(1.2) rotate(10deg)}80%{transform:scale(0.95) rotate(-5deg)}100%{opacity:1;transform:scale(1) rotate(0);filter:blur(0)}}
+            @media(max-width:600px){.valentine-message.reveal-boom{font-size:22px!important}.valentine-message.finale-mega{font-size:24px!important}}
+          `;
+          document.head.appendChild(style);
+          
+          console.log('✅ Valentine embedded script ready! Total:', msgs.length);
+        })();
+        </script>
+      </div>
+    </div>
+
+        <!-- ============ SURAT CINTA SECTION ============ -->
     <div class="section" id="surat">
       <div class="section-header">
         <button class="back-btn" onclick="goBack()">
@@ -4254,7 +5732,7 @@
     function updateDaysCounter() {
       const now = new Date();
       const diffTime = Math.abs(now - RELATIONSHIP_START_DATE);
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) - 1; // Dikurangi 1 hari
       
       const daysElement = document.querySelector('[data-stat="days"] .stat-number');
       if (daysElement) {
@@ -7908,6 +9386,214 @@
   console.log('  - saveGameScore(name, score), getHighScore(name, callback)');
   console.log('  - addCatatan(), loadCatatan(), deleteCatatan(id)');
   console.log('  - clearAllData()');
+
+  // ============================================
+  // 🌹 VALENTINE DAY KATA-KATA ROMANTIS - NUCLEAR VERSION
+  // ============================================
+  
+  (function() {
+    console.log('💣 NUCLEAR VALENTINE INIT STARTING...');
+    
+    const valentineMessages = [
+      "Sayanggg 💕",
+      "Hari ini adalah harii yang sangatt spesiall ✨🎉",
+      "Iyaa... 😊",
+      "14 Februari adalah hari Valentine 💝",
+      "Hari kasih sayangg 💖❤️",
+      "Meskipun aku sayang kamu tiap hari sih yaa 🥰",
+      "Tapi tetep aja perlu dirayakan 🎉",
+      "Kenapa? 🤔",
+      "Gatau sih, mau aja wkwk😂",
+      "Nggak nggakk.... 🙈",
+      "Akuu... 👉👈",
+      "Mau... 💭",
+      "Merayakan... ✨",
+      "Sesuatu yang special... 💫",
+      "Bersama orang yang special... 💕",
+      "Ooooomaigatttt wkwk 😆🤭",
+      "Di hari Valentine ini... 🌹",
+      "Jika diberikan pilihan 🤔💭",
+      "Coklat 🍫",
+      "Bunga 🌷💐",
+      "Atau baik-baik saja denganmu 🤗💞",
+      "Maka aku akan memilih 👉",
+      "Baik-baik saja denganmu 💑✨",
+      "HAPPY VALENTINE DAY! 🎊💝🎉"
+    ];
+
+    let currentValentineIndex = 0;
+    let valentineAutoInterval = null;
+    let isValentineAutoPlaying = false;
+
+    window.initializeValentine = function() {
+      console.log('💣 NUCLEAR INIT CALLED!');
+      
+      currentValentineIndex = 0;
+      
+      const displayElement = document.getElementById('valentineMessage');
+      const indexElement = document.getElementById('valentineCurrentIndex');
+      const totalElement = document.getElementById('valentineTotalCount');
+      
+      console.log('Elements:', {
+        display: !!displayElement,
+        index: !!indexElement,
+        total: !!totalElement
+      });
+      
+      if (displayElement) {
+        displayElement.textContent = valentineMessages[0];
+        displayElement.style.opacity = '1';
+        displayElement.style.transform = 'translateY(0)';
+        console.log('✅ Set message:', valentineMessages[0]);
+      }
+      
+      if (indexElement) {
+        indexElement.textContent = '1';
+      }
+      
+      if (totalElement) {
+        totalElement.textContent = valentineMessages.length;
+      }
+      
+      // Day number
+      const dayEl = document.getElementById('valentineDayNumber');
+      if (dayEl) {
+        const valentineDate = new Date('2026-02-14');
+        const startDate = new Date('2024-12-25');
+        const diffTime = Math.abs(valentineDate - startDate);
+        const valentineDay = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) - 1;
+        dayEl.textContent = valentineDay;
+      }
+      
+      console.log('✅ NUCLEAR INIT COMPLETE!');
+    };
+
+    function updateValentineDisplay() {
+      const displayElement = document.getElementById('valentineMessage');
+      const indexElement = document.getElementById('valentineCurrentIndex');
+      
+      if (displayElement && indexElement) {
+        displayElement.style.opacity = '0';
+        displayElement.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+          displayElement.textContent = valentineMessages[currentValentineIndex];
+          indexElement.textContent = currentValentineIndex + 1;
+          displayElement.style.opacity = '1';
+          displayElement.style.transform = 'translateY(0)';
+        }, 300);
+      }
+    }
+
+    window.nextValentineMessage = function() {
+      currentValentineIndex = (currentValentineIndex + 1) % valentineMessages.length;
+      updateValentineDisplay();
+      if (typeof createHearts === 'function') createHearts(3);
+    };
+
+    window.previousValentineMessage = function() {
+      currentValentineIndex = (currentValentineIndex - 1 + valentineMessages.length) % valentineMessages.length;
+      updateValentineDisplay();
+      if (typeof createHearts === 'function') createHearts(3);
+    };
+
+    window.toggleValentineAuto = function() {
+      const autoBtn = document.getElementById('valentineAutoBtn');
+      
+      if (isValentineAutoPlaying) {
+        clearInterval(valentineAutoInterval);
+        isValentineAutoPlaying = false;
+        autoBtn.textContent = '▶️ Putar Otomatis';
+        autoBtn.classList.remove('active');
+        if (typeof showNotification === 'function') showNotification('⏸️ Auto play dihentikan');
+      } else {
+        isValentineAutoPlaying = true;
+        autoBtn.textContent = '⏸️ Berhenti';
+        autoBtn.classList.add('active');
+        if (typeof showNotification === 'function') showNotification('▶️ Auto play dimulai!');
+        
+        valentineAutoInterval = setInterval(() => {
+          window.nextValentineMessage();
+        }, 5000);
+      }
+    };
+
+    window.stopValentineAuto = function() {
+      if (isValentineAutoPlaying) {
+        clearInterval(valentineAutoInterval);
+        isValentineAutoPlaying = false;
+        const autoBtn = document.getElementById('valentineAutoBtn');
+        if (autoBtn) {
+          autoBtn.textContent = '▶️ Putar Otomatis';
+          autoBtn.classList.remove('active');
+        }
+      }
+    };
+
+    // AGGRESSIVE INIT - Multiple strategies
+    console.log('💣 Setting up AGGRESSIVE init...');
+    
+    // Strategy 1: MutationObserver untuk detect valentine section
+    const observer = new MutationObserver(function(mutations) {
+      const valentineSection = document.getElementById('valentine');
+      if (valentineSection && valentineSection.classList.contains('active')) {
+        console.log('💣 Valentine section detected via MutationObserver!');
+        setTimeout(() => window.initializeValentine(), 100);
+        observer.disconnect();
+      }
+    });
+    
+    if (document.body) {
+      observer.observe(document.body, { 
+        attributes: true, 
+        subtree: true, 
+        attributeFilter: ['class'] 
+      });
+    }
+    
+    // Strategy 2: Interval check
+    let checkCount = 0;
+    const checkInterval = setInterval(() => {
+      checkCount++;
+      const valentineSection = document.getElementById('valentine');
+      
+      if (valentineSection && valentineSection.classList.contains('active')) {
+        console.log('💣 Valentine section detected via interval check!');
+        clearInterval(checkInterval);
+        setTimeout(() => window.initializeValentine(), 100);
+      }
+      
+      if (checkCount > 50) { // Stop after 5 seconds
+        clearInterval(checkInterval);
+        console.log('⚠️ Stopped checking after 5 seconds');
+      }
+    }, 100);
+    
+    // Strategy 3: Hook openSection if it exists
+    setTimeout(() => {
+      if (typeof openSection === 'function') {
+        console.log('💣 Hooking openSection...');
+        const original = openSection;
+        window.openSection = function(sectionId) {
+          console.log('💣 openSection called:', sectionId);
+          
+          if (window.currentSection === 'valentine') {
+            window.stopValentineAuto();
+          }
+          
+          original(sectionId);
+          
+          if (sectionId === 'valentine') {
+            console.log('💣 Valentine section opening!');
+            setTimeout(() => window.initializeValentine(), 150);
+          }
+        };
+      }
+    }, 500);
+    
+    console.log('💝 Nuclear Valentine loaded!');
+  })();
+  
 </script>
 
 </body>
