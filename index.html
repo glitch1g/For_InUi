@@ -4197,6 +4197,7 @@
       z-index: 2;
       padding: 0 30px;
       font-weight: 500;
+      font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
     }
 
     .valentine-controls {
@@ -4574,12 +4575,23 @@
 
         <div class="valentine-header-info">
           <div class="valentine-date-badge">
-            <div class="badge-icon">📅</div>
+            <div class="badge-icon" style="font-size: 32px; margin-bottom: 5px;">💝</div>
+            <div style="font-size: 14px; font-weight: 600; letter-spacing: 1px; opacity: 0.9; margin-bottom: 5px; text-transform: uppercase; color: var(--accent);">Valentine's Day</div>
+            
+            <!-- Decorative animated hearts -->
+            <div style="display: flex; justify-content: center; align-items: center; gap: 8px; margin: 12px 0;">
+              <span style="font-size: 18px; animation: pulse 1.5s ease-in-out infinite; display: inline-block;">💕</span>
+              <span style="font-size: 14px; opacity: 0.8;">━━━━</span>
+              <span style="font-size: 20px; animation: heartBeat 1.3s ease-in-out infinite; display: inline-block;">💖</span>
+              <span style="font-size: 14px; opacity: 0.8;">━━━━</span>
+              <span style="font-size: 18px; animation: pulse 1.5s ease-in-out infinite 0.5s; display: inline-block;">💕</span>
+            </div>
+            
             <h3 style="font-size: 26px; margin: 8px 0; font-weight: 800;">14 Februari 2026</h3>
           </div>
           <div class="valentine-day-counter">
             <span class="counter-label">Hari Bersama Ke-</span>
-            <span class="counter-number" id="valentineDayNumber">415</span>
+            <span class="counter-number" id="valentineDayNumber">36</span>
           </div>
           <p style="text-align: center; font-style: italic; opacity: 0.85; margin: 20px 0 30px; font-size: 15px; max-width: 500px; margin-left: auto; margin-right: auto;">
             💕 Valentine pertama kita, dan masih banyak Valentine lainnya yang akan kita rayakan bersama ❤️
@@ -4626,6 +4638,13 @@
           <button class="valentine-auto-btn" id="valentineAutoBtn" onclick="valentineToggleAuto()">
             ▶️ Putar Otomatis
           </button>
+          
+          <!-- Note Kesan Pesan -->
+          <div style="margin-top: 25px; padding: 20px; background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 182, 193, 0.1)); border-radius: 15px; border: 2px dashed rgba(255, 107, 107, 0.3); text-align: center;">
+            <p style="font-size: 15px; line-height: 1.8; font-style: italic; opacity: 0.95; font-family: 'Segoe UI', Tahoma, sans-serif;">
+              💌 Kalau ada kesan dan pesan, masukin dalam menu <strong style="color: var(--accent);">Catatan Bersama</strong> aja yaa yangg😋
+            </p>
+          </div>
         </div>
         
         <script>
@@ -4649,7 +4668,7 @@
             "Merayakan... ✨",
             "Sesuatu yang special... 💫",
             "Bersama orang yang special... 💕",
-            "Ooooomaigatttt wkwk 😆🤭",
+            "Asseeekkkk wkwkwkwk😭😂",
             "Di hari Valentine ini... 🌹",
             "Jika diberikan pilihan 🤔💭",
             "Coklat 🍫",
@@ -4657,7 +4676,7 @@
             "Atau baik-baik saja...💞",
             "Maka aku akan memilih 👉",
             "Baik-baik saja denganmu 💑✨",
-            "HAPPY VALENTINE DAY! 🎊💝🎉"
+            "HAPPY VALENTINE DAY SAYANGGGKUUU! 🎊💝🎉"
           ];
           
           // Tema untuk setiap pesan
@@ -4887,7 +4906,66 @@
           `;
           document.head.appendChild(style);
           
+          // Music control untuk Valentine
+          const bgMusic = document.getElementById('bgMusic');
+          let wasMusicPlaying = false;
+          
+          // Function untuk start music
+          function startValentineMusic() {
+            if (bgMusic) {
+              wasMusicPlaying = !bgMusic.paused;
+              bgMusic.play().catch(e => {
+                console.log('Music autoplay prevented, will play on first interaction');
+                // Retry on next click
+                document.addEventListener('click', function playOnClick() {
+                  bgMusic.play();
+                  document.removeEventListener('click', playOnClick);
+                }, { once: true });
+              });
+            }
+          }
+          
+          // Function untuk stop music
+          function stopValentineMusic() {
+            if (bgMusic && !wasMusicPlaying) {
+              bgMusic.pause();
+            }
+          }
+          
+          // Auto-detect ketika valentine section active
+          const observer = new MutationObserver(function(mutations) {
+            const valentineSection = document.getElementById('valentine');
+            if (valentineSection) {
+              if (valentineSection.classList.contains('active')) {
+                console.log('🎵 Valentine active, starting music...');
+                startValentineMusic();
+              } else if (!valentineSection.classList.contains('active') && observer.wasActive) {
+                console.log('🎵 Valentine closed, stopping music...');
+                stopValentineMusic();
+              }
+              observer.wasActive = valentineSection.classList.contains('active');
+            }
+          });
+          
+          // Start observing
+          if (document.body) {
+            observer.observe(document.body, { 
+              attributes: true, 
+              subtree: true, 
+              attributeFilter: ['class'] 
+            });
+          }
+          
+          // Also check periodically
+          setInterval(() => {
+            const valentineSection = document.getElementById('valentine');
+            if (valentineSection && valentineSection.classList.contains('active') && bgMusic && bgMusic.paused) {
+              startValentineMusic();
+            }
+          }, 1000);
+          
           console.log('✅ Valentine embedded script ready! Total:', msgs.length);
+          console.log('🎵 Music control initialized');
         })();
         </script>
       </div>
