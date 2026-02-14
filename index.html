@@ -4314,28 +4314,32 @@
 
     @media (max-width: 600px) {
       .valentine-message {
-        font-size: 17px;
+        font-size: 18px;
         padding: 0 15px;
+        line-height: 2;
+        font-weight: 500;
+        font-style: normal;
+        letter-spacing: 0.3px;
       }
       
       .valentine-text-display {
-        min-height: 250px;
-        padding: 35px 25px;
+        min-height: 220px;
+        padding: 30px 20px;
       }
       
       .valentine-control-btn {
-        font-size: 14px;
-        padding: 12px 20px;
-        min-width: 110px;
+        font-size: 13px;
+        padding: 10px 16px;
+        min-width: 100px;
       }
       
       .valentine-indicator {
-        font-size: 15px;
-        padding: 10px 18px;
+        font-size: 14px;
+        padding: 10px 16px;
       }
 
       .quote-mark {
-        font-size: 50px;
+        font-size: 40px;
       }
 
       .counter-number {
@@ -4344,6 +4348,11 @@
 
       .float-heart {
         font-size: 18px;
+      }
+      
+      .valentine-auto-btn {
+        font-size: 15px;
+        padding: 14px 24px;
       }
     }
 
@@ -9533,14 +9542,10 @@
         totalElement.textContent = valentineMessages.length;
       }
       
-      // Day number
+      // Day number - hardcoded
       const dayEl = document.getElementById('valentineDayNumber');
       if (dayEl) {
-        const valentineDate = new Date('2026-02-14');
-        const startDate = new Date('2024-12-25');
-        const diffTime = Math.abs(valentineDate - startDate);
-        const valentineDay = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) - 1;
-        dayEl.textContent = valentineDay;
+        dayEl.textContent = '36';
       }
       
       console.log('✅ NUCLEAR INIT COMPLETE!');
